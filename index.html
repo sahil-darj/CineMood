@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Webpage</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Simple star styling */
+      .star {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        background-color: #444;
+        clip-path: polygon(
+          50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%
+        );
+      }
+      .star.filled {
+        background-color: #facc15;
+      }
+    </style>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-black text-white">
+    <!-- Container where all sections load -->
+    <div id="app"></div>
+
+    <script>
+      const sections = [
+        "navbar.html",
+        "hero.html",
+        "cetegory.html",
+        //"trending.html",
+        //"moviecard.html",
+        "moodsearch.html",
+        "underrated.html",
+        "reviewsection.html",
+        //"auth.html",
+        "footer.html",
+      ];
+
+      //moodsearch movie
+      async function loadSections() {
+        const app = document.getElementById("app");
+        for (const file of sections) {
+          try {
+            const res = await fetch(`src/${file}`);
+
+            if (!res.ok) throw new Error(res.statusText);
+
+            const html = await res.text();
+
+            const section = document.createElement("div");
+            section.innerHTML = html;
+            app.appendChild(section);
+            const moodMovies = {
+              happy: [
+                {
+                  title: "Jolly LLB 3",
+                  year: 2025,
+                  rating: 8.8,
+                  poster: "movie web/b/jollyllb3.jpg",
+                },
+                {
+                  title: "Zindagi Na Milegi Dobara",
+                  year: 2011,
+                  rating: 8.2,
+                  poster: "movie web/b/znmd.jpg",
+                },
+
+                {
+                  title: "Welcome",
+                  year: 2007,
+                  rating: 9.5,
+                  poster: "movie web/b/welcome.jpg",
+                },
+
+                {
+                  title: "Vicky Donor",
+                  year: 2012,
+                  rating: 7.3,
+                  poster: "movie web/b/vd.jpg",
+                },
+              ],
+              sad: [
+                {
+                  title: "Tourist Family",
+                  year: 2024,
+                  rating: 8.9,
+                  poster: "movie web/tamil/tf.jpg",
+                },
+
+                {
+                  title: "3 BHK",
+                  year: 2025,
+                  rating: 8.4,
+                  poster: "movie web/tamil/3bhk.jpg",
+                },
+
+                {
+                  title: "Dunki",
+                  year: 2023,
+                  rating: 8.1,
+                  poster: "movie web/b/dunki.jpg",
+                },
+                {
+                  title: "2018",
+                  year: 2023,
+                  rating: 8.3,
+                  poster: "movie web/Malayalam/2018.jpg",
+                },
+              ],
+              action: [
+                {
+                  title: "Baahubali 2: The Conclusion",
+                  year: 2017,
+                  rating: 8.9,
+                  poster: "movie web/Telugu/baahubali.jpg",
+                },
+                {
+                  title: "Captain America: Civil War",
+                  year: 2016,
+                  rating: 7.4,
+                  poster: "movie web/h/civilwar.jpg",
+                },
+                {
+                  title: "Robot",
+                  year: 2010,
+                  rating: 8.7,
+                  poster: "movie web/tamil/robot.jpg",
+                },
+                {
+                  title: "Mission: Impossible – The Final Reckoning",
+                  year: 2025,
+                  rating: 7.2,
+                  poster: "movie web/h/mi8.jpg",
+                },
+              ],
+              romantic: [
+                {
+                  title: "Tu Jhoothi Main Makkaar",
+                  year: 2023,
+                  rating: 6,
+                  poster: "movie web/b/tjmm.jpeg",
+                },
+                {
+                  title: "Dilwale Dulhania Le Jayenge",
+                  year: 1995,
+                  rating: 8.1,
+                  poster: "movie web/b/ddlj.jpg",
+                },
+
+                {
+                  title: "Kabir Singh",
+                  year: 2019,
+                  rating: 7,
+                  poster: "movie web/b/ks.jpg",
+                },
+
+                {
+                  title: "Jab We Meet",
+                  year: 2007,
+                  rating: 7.9,
+                  poster: "movie web/b/jwm.jpeg",
+                },
+              ],
+              horror: [
+                {
+                  title: "Shaitaan",
+                  year: 2024,
+                  rating: 6.5,
+                  poster: "movie web/b/shaitan.jpg",
+                },
+                {
+                  title: "The Conjuring",
+                  year: 2013,
+                  rating: 7.5,
+                  poster: "movie web/h/horro2.jpg",
+                },
+
+                {
+                  title: "Stree",
+                  year: 2019,
+                  rating: 7.9,
+                  poster: "movie web/b/stree.jpeg",
+                },
+
+                {
+                  title: "1920",
+                  year: 2008,
+                  rating: 6.5,
+                  poster: "movie web/b/1920.jpg",
+                },
+              ],
+              angry: [
+                {
+                  title: "Animal",
+                  year: 2023,
+                  rating: 8.1,
+                  poster: "movie web/b/animal2.jpeg",
+                },
+                {
+                  title: "Agneepath",
+                  year: 2012,
+                  rating: 7.9,
+                  poster: "movie web/b/Agneepath.jpeg",
+                },
+
+                {
+                  title: "Badlapur",
+                  year: 2015,
+                  rating: 7.4,
+                  poster: "movie web/b/badlapur.jpeg",
+                },
+
+                {
+                  title: "Gangs of Wasseypur",
+                  year: 2012,
+                  rating: 8.2,
+                  poster: "movie web/b/gow.jpeg",
+                },
+              ],
+            };
+
+            const btn = document.getElementById("mobile-menu-btn");
+            const menu = document.getElementById("mobile-menu");
+
+            btn.addEventListener("click", () => {
+              menu.classList.toggle("hidden");
+              btn.innerHTML = menu.classList.contains("hidden")
+                ? '<i class="fa fa-bars text-2xl"></i>'
+                : '<i class="fa fa-times text-2xl"></i>';
+            });
+
+            const moods = [
+              {
+                id: "happy",
+                name: "Happy",
+                emoji: "😊",
+                color: "bg-yellow-500 hover:bg-yellow-600",
+              },
+              {
+                id: "sad",
+                name: "Sad",
+                emoji: "😢",
+                color: "bg-blue-500 hover:bg-blue-600",
+              },
+              {
+                id: "angry",
+                name: "Angry",
+                emoji: "😡",
+                color: "bg-red-500 hover:bg-red-600",
+              },
+              {
+                id: "romantic",
+                name: "Romantic",
+                emoji: "❤️",
+                color: "bg-pink-500 hover:bg-pink-600",
+              },
+              {
+                id: "horror",
+                name: "Horror",
+                emoji: "👻",
+                color: "bg-purple-500 hover:bg-purple-600",
+              },
+              {
+                id: "action",
+                name: "Action",
+                emoji: "💥",
+                color: "bg-green-500 hover:bg-green-600",
+              },
+            ];
+
+            const buttonsContainer = document.getElementById("mood-buttons");
+            const moviesContainer = document.getElementById("movies-container");
+            console.log(moviesContainer);
+
+            //let count = 1;
+
+            let selectedMood = "";
+
+            // Render mood buttons
+            //if (count === 1) {
+            //console.log(count);
+            // count++;
+            //} else {
+            //  console.log("No movies found");
+            //  console.log(count);
+            //}
+
+            if (file === "moodsearch.html") {
+              moods.forEach((mood) => {
+                const btn = document.createElement("button");
+                btn.className = `${mood.color} cursor-pointer px-6 py-3 rounded-full text-white font-semibold transition-all duration-300 transform hover:scale-110 hover:shadow-lg animate-pulse-on-hover`;
+                btn.setAttribute("aria-label", `Show ${mood.name} movies`);
+                btn.innerHTML = `<span class="text-2xl mr-2">${mood.emoji}</span>${mood.name}`;
+                btn.onclick = () => {
+                  selectedMood = mood.id;
+                  renderMovies();
+                };
+                buttonsContainer.appendChild(btn);
+              });
+
+              // Render movies for selected mood
+              function renderMovies() {
+                if (!selectedMood) {
+                  moviesContainer.innerHTML = `<div class="text-gray-400  text-lg">Select a mood to discover perfect movies for you! 🎬</div>`;
+                  return;
+                }
+
+                const movies = moodMovies[selectedMood];
+                let movieCards = `
+                                <h3 class="text-2xl font-bold text-white mb-8 text-center animate-fade-in">
+                                  Movies for your <span class="text-yellow-500 capitalize">${selectedMood}</span> mood
+                                </h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                              `;
+
+                movies.forEach((movie) => {
+                  movieCards += `
+                                  <div class="bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transform transition shadow-lg animate-fade-in">
+                                    <img src="${movie.poster}" alt="${movie.title}" class="w-full h-96 object-cover object top"/>
+                                    <div class="p-4">
+                                      <h4 class="text-lg font-bold">${movie.title}</h4>
+                                      <p class="text-gray-400">${movie.year}</p>
+                                      <p class="text-yellow-500 font-semibold">⭐ ${movie.rating}</p>
+                                    </div>
+                                  </div>
+                                `;
+                });
+
+                movieCards += `</div>`;
+                moviesContainer.innerHTML = movieCards;
+
+                if (file === "reviewsection.html") {
+                  setTimeout(() => {
+                    renderReviews();
+                  }, 0);
+                }
+              }
+
+              //initMoodSearch();
+
+              //lucide.createIcons();
+
+              // Init
+              document.addEventListener("DOMContentLoaded", () => {
+                renderReviews();
+
+                renderStars(document.querySelector(".stars"), 4);
+              });
+            }
+          } catch (err) {
+            console.error("Error loading", file, err);
+          }
+        }
+
+        // After all sections are loaded
+        initTabs();
+        renderTrendingMovies();
+      }
+      // ✅ Initialize mood search if section exists
+      //if (document.getElementById("mood")) {
+      //initMoodSearch();
+      //}
+
+      // Tabs
+      function initTabs() {
+        const tabs = document.querySelectorAll(".tab-btn");
+        const contents = document.querySelectorAll(".tab-content");
+
+        if (!tabs.length || !contents.length) return;
+
+        // Default
+        tabs[0].classList.add("bg-yellow-500");
+        contents[0].classList.remove("hidden");
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            tabs.forEach((t) => t.classList.remove("bg-yellow-500"));
+            contents.forEach((c) => c.classList.add("hidden"));
+
+            tab.classList.add("bg-yellow-500");
+            const target = tab.dataset.tab;
+            const contentDiv = document.getElementById(target);
+            if (contentDiv) contentDiv.classList.remove("hidden");
+          });
+        });
+      }
+      /*const reviews = [
+        {
+          id: 1,
+          username: "MovieBuff123",
+          rating: 5,
+          comment: "Absolutely incredible! The cinematography is breathtaking.",
+          avatar:
+            "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+        },
+        {
+          id: 2,
+          username: "CinemaLover",
+          rating: 4,
+          comment: "Great story and amazing performances by the cast.",
+          avatar:
+            "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+        },
+        {
+          id: 3,
+          username: "FilmCritic",
+          rating: 3,
+          comment: "Good movie overall, but could have been better paced.",
+          avatar:
+            "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+        },
+      ];
+
+      let newRating = 0;
+
+      function renderStars(container, rating, interactive = false) {
+        container.innerHTML = "";
+        for (let i = 1; i <= 5; i++) {
+          const star = document.createElement("i");
+          star.setAttribute("data-lucide", "star");
+          star.className =
+            i <= rating ? "text-yellow-500 fill-yellow-500" : "text-gray-400";
+          if (interactive) {
+            star.classList.add("cursor-pointer");
+            star.onclick = () => {
+              newRating = i;
+              renderStars(container, newRating, true);
+            };
+          }
+          container.appendChild(star);
+        }
+
+        lucide.createIcons();
+      }
+
+      function renderReviews() {
+        const list = document.getElementById("reviews-list");
+        list.innerHTML = "";
+        reviews.forEach((r) => {
+          const div = document.createElement("div");
+          div.className = "bg-gray-900 rounded-lg p-6";
+          div.innerHTML = `
+        <div class="flex items-start space-x-4">
+          <img src="${r.avatar}" alt="${r.username}" class="w-12 h-12 rounded-full object-cover"/>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-semibold">${r.username}</h4>
+              <div class="stars flex space-x-1" data-rating="${r.rating}"></div>
+            </div>
+            <p class="text-gray-300">${r.comment}</p>
+          </div>
+        </div>
+      `;
+          list.appendChild(div);
+          renderStars(div.querySelector(".stars"), r.rating);
+        });
+      }
+
+      function openModal() {
+        document.getElementById("reviewModal").classList.remove("hidden");
+        newRating = 0;
+        renderStars(document.getElementById("newStars"), 0, true);
+      }
+
+      function closeModal() {
+        document.getElementById("reviewModal").classList.add("hidden");
+      }
+
+      function submitReview() {
+        const comment = document.getElementById("newComment").value.trim();
+        if (newRating > 0 && comment) {
+          reviews.push({
+            id: reviews.length + 1,
+            username: "NewUser",
+            rating: newRating,
+            comment: comment,
+            avatar: "https://via.placeholder.com/100",
+          });
+
+          closeModal();
+        } else {
+          alert("Please add a rating and comment!");
+        }
+      }*/
+
+      //Review and ratings
+      const reviews = [
+        {
+          username: "Taran Adarsh",
+          rating: 5,
+          comment:
+            "Avengers: Endgame is an epic emotional rollercoaster — a cinematic thunderstorm that redefines superhero finales! ⚡️.",
+          avatar: "movie web/Critic/taran.jpg",
+        },
+        {
+          username: "Komal Nahta",
+          rating: 4,
+          comment:
+            "Technically brilliant, emotionally heavy, but a bit too long for the average viewer.🎬.",
+          avatar: "movie web/Critic/komal.jpeg",
+        },
+        {
+          username: "Suraj Kumar",
+          rating: 3,
+          comment:
+            "Thik tha… bahut hero the, samajh nahi aaya kaun kya kar raha tha, par ending mast thi!",
+          avatar: "movie web/Critic/suraj.jpg",
+        },
+
+        {
+          username: "KRK",
+          rating: 1,
+          comment:
+            "This movie is pure torture — three hours of nonsense and hype!",
+          avatar: "movie web/Critic/krk.jpg",
+        },
+      ];
+
+      let newRating = 0;
+
+      // Render Stars
+      function renderStarss(container, rating, interactive = false) {
+        container.innerHTML = "";
+        for (let i = 1; i <= 5; i++) {
+          const star = document.createElement("i");
+          star.className =
+            i <= rating
+              ? "fas fa-star text-yellow-400 cursor-pointer"
+              : "far fa-star text-gray-400 cursor-pointer";
+
+          if (interactive) {
+            star.onclick = () => {
+              newRating = i;
+              renderStarss(container, newRating, true);
+            };
+          }
+          container.appendChild(star);
+        }
+      }
+
+      // Render Reviews
+      function renderReviews() {
+        const list = document.getElementById("reviews-list");
+        list.innerHTML = "";
+        reviews.forEach((r) => {
+          const div = document.createElement("div");
+          div.className = "bg-gray-900 rounded-lg p-6 mb-4";
+          div.innerHTML = `
+          <div class="flex items-start space-x-4">
+            <img src="${r.avatar}" alt="${r.username}" class="w-12 h-12 rounded-full object-cover"/>
+            <div class="flex-1">
+              <div class="flex items-center justify-between mb-2">
+                <h4 class="font-semibold">${r.username}</h4>
+                <div class="stars flex space-x-1"></div>
+              </div>
+              <p class="text-gray-300">${r.comment}</p>
+            </div>
+          </div>`;
+          list.appendChild(div);
+          renderStarss(div.querySelector(".stars"), r.rating);
+        });
+      }
+
+      // Modal Controls
+      function openModal() {
+        document.getElementById("reviewModal").classList.remove("hidden");
+        newRating = 0;
+        renderStarss(document.getElementById("newStars"), 0, true);
+      }
+
+      function closeModal() {
+        document.getElementById("reviewModal").classList.add("hidden");
+        document.getElementById("newComment").value = "";
+        renderStarss(document.getElementById("newStars"), 0, true);
+      }
+
+      // Submit Review
+      function submitReview() {
+        const comment = document.getElementById("newComment").value.trim();
+        if (newRating > 0 && comment) {
+          reviews.push({
+            username: "Sahil",
+            rating: newRating,
+            comment: comment,
+            avatar: "movie web/Critic/sahil.jpeg",
+          });
+          renderReviews();
+          closeModal();
+        } else {
+          alert("Please add a rating and comment!");
+        }
+      }
+
+      // Init
+      document.addEventListener("DOMContentLoaded", () => {
+        renderReviews();
+        renderStarss(document.getElementById("newStars"), 0, true);
+      });
+
+      // Trending Movies
+      const trendingMovies = [
+        {
+          title: "Avatar: The Way of Water",
+          year: 2022,
+          rating: 7.8,
+          poster: "./images/avatar.jpg",
+          ott: "./movie web/logo/jiohotstar.png",
+        },
+        {
+          title: "Top Gun: Maverick",
+          year: 2022,
+          rating: 8.3,
+          poster: "./images/topgun.jpg",
+          ott: "./movie web/logo/apv.png",
+        },
+        {
+          title: "Black Panther: Wakanda Forever",
+          year: 2022,
+          rating: 6.7,
+          poster: "./images/bp.jpg",
+          ott: "./movie web/logo/netflix.png",
+        },
+        {
+          title: "The Batman",
+          year: 2022,
+          rating: 7.8,
+          poster: "./images/batman.jpg",
+          ott: "./movie web/logo/zee5.png",
+        },
+        {
+          title: "Dune",
+          year: 2021,
+          rating: 8.0,
+          poster: "./images/dune.jpg",
+          ott: "./movie web/logo/jojo.png",
+        },
+        {
+          title: "Spider-Man: No Way Home",
+          year: 2021,
+          rating: 8.3,
+          poster: "./images/spiderman.jpg",
+          ott: "./movie web/logo/sonyliv.png",
+        },
+      ];
+
+      function renderStars(rating) {
+        const stars = [];
+        const fullStars = Math.round(rating / 2);
+        for (let i = 0; i < 5; i++) {
+          stars.push(
+            `<span class="star ${i < fullStars ? "filled" : ""}"></span>`
+          );
+        }
+        return stars.join("");
+      }
+
+      function renderTrendingMovies() {
+        const grid = document.getElementById("trending-grid");
+        if (!grid) return;
+
+        // ✅ Make the grid responsive
+        grid.className =
+          "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6";
+
+        trendingMovies.forEach((movie, index) => {
+          const card = document.createElement("div");
+          card.className =
+            "relative movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300";
+
+          // Badge color
+          let badgeColor = "bg-red-600";
+
+          card.innerHTML = `
+            <!-- Trending Rank Badge -->
+            <span class="absolute top-3 left-3 ${badgeColor} text-xs sm:text-sm md:text-base font-bold px-3 py-1 rounded-full shadow-lg z-10">
+              #${index + 1}
+            </span>
+      
+            <!-- Poster -->
+            <img src="${movie.poster}" alt="${
+            movie.title
+          }" class="w-full h-64 sm:h-72 object-cover"/>
+      
+            <!-- OTT Logo -->
+            <img src="${movie.ott}" alt="OTT Logo"
+              class="absolute bottom-4 right-3 w-8 sm:w-10 h-8 sm:h-10 object-contain transition-transform duration-300 hover:scale-110"/>
+      
+            <!-- Movie Info -->
+            <div class="p-4">
+              <h3 class="font-bold text-lg line-clamp-1">${movie.title}</h3>
+              <p class="text-gray-400">${movie.year}</p>
+              <div class="stars mt-2">${renderStars(movie.rating)}</div>
+            </div>
+          `;
+          renderReviews();
+          grid.appendChild(card);
+        });
+      }
+
+      // Run after page loads
+      window.onload = loadSections;
+    </script>
+  </body>
+</html>

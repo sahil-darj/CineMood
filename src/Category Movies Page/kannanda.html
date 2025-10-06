@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sandalwood Movies</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Line clamp for movie titles */
+      .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-white">
+    <div class="pt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Title -->
+      <h1 class="text-4xl font-bold text-yellow-400 mb-6">Sandalwood Movies</h1>
+
+      <!-- Search bar -->
+      <div class="mb-8 relative w-full max-w-md">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search movies..."
+          class="w-full bg-gray-800/50 backdrop-blur-sm text-white placeholder-gray-400 pl-4 pr-4 py-2 rounded-full border border-gray-700 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/20 transition-all duration-300"
+        />
+      </div>
+
+      <!-- Movie grid -->
+      <div
+        id="movieSections"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      ></div>
+    </div>
+
+    <script>
+      const movies = [
+        {
+          id: "1",
+          title: "KGF: Chapter 1",
+          rating: 8.2,
+          year: 2018,
+          genre: "Action / Crime / Drama",
+          imageUrl: "/movie web/Kannada/kgf1.jpg",
+        },
+        {
+          id: "2",
+          title: "KGF: Chapter 2",
+          rating: 8.4,
+          year: 2022,
+          genre: "Action / Crime / Drama",
+          imageUrl: "/movie web/Kannada/kgf2.jpg",
+        },
+        {
+          id: "3",
+          title: "Kabzaa",
+          rating: 6.5,
+          year: 2023,
+          genre: "Action / Crime / Drama",
+          imageUrl: "/movie web/Kannada/kabza.jpg",
+        },
+        {
+          id: "4",
+          title: "Sapta Sagaradaache Ello: Side A",
+          rating: 7.8,
+          year: 2023,
+          genre: "Romance / Drama",
+          imageUrl: "/movie web/Kannada/sse.jpg",
+        },
+        {
+          id: "5",
+          title: "Sapta Sagaradaache Ello: Side B",
+          rating: 7.5,
+          year: 2023,
+          genre: "Romance / Drama",
+          imageUrl: "/movie web/Kannada/sseb.jpg",
+        },
+        {
+          id: "6",
+          title: "Max",
+          rating: 7.0,
+          year: 2024,
+          genre: "Action / Thriller",
+          imageUrl: "/movie web/Kannada/max.jpg",
+        },
+        {
+          id: "7",
+          title: "777 Charlie",
+          rating: 8.4,
+          year: 2022,
+          genre: "Adventure / Comedy / Drama",
+          imageUrl: "/movie web/Kannada/777c.jpg",
+        },
+        {
+          id: "8",
+          title: "Vikrant Rona",
+          rating: 6.9,
+          year: 2022,
+          genre: "Action / Adventure / Fantasy",
+          imageUrl: "/movie web/Kannada/vr.jpg",
+        },
+        {
+          id: "9",
+          title: "Kantara",
+          rating: 8.3,
+          year: 2022,
+          genre: "Action / Drama / Thriller",
+          imageUrl: "/movie web/Kannada/k.jpg",
+        },
+        {
+          id: "10",
+          title: "Kantara: Chapter 2",
+          rating: 8.5,
+          year: 2025,
+          genre: "Action / Drama / Thriller",
+          imageUrl: "/movie web/Kannada/kanatara.jpg",
+        },
+        {
+          id: "11",
+          title: "RangiTaranga",
+          rating: 8.1,
+          year: 2015,
+          genre: "Mystery / Thriller",
+          imageUrl: "/movie web/Kannada/rt.jpeg",
+        },
+        {
+          id: "12",
+          title: "Ugramm",
+          rating: 7.6,
+          year: 2014,
+          genre: "Action / Drama",
+          imageUrl: "/movie web/Kannada/ugramm.jpg",
+        },
+        {
+          id: "13",
+          title: "Lucia",
+          rating: 8.0,
+          year: 2013,
+          genre: "Fantasy / Thriller",
+          imageUrl: "/movie web/Kannada/lucia.jpg",
+        },
+        {
+          id: "14",
+          title: "Kirik Party",
+          rating: 7.9,
+          year: 2016,
+          genre: "Comedy / Drama / Romance",
+          imageUrl: "/movie web/Kannada/kirik party.jpg",
+        },
+        {
+          id: "15",
+          title: "Thithi",
+          rating: 8.2,
+          year: 2015,
+          genre: "Comedy / Drama",
+          imageUrl: "/movie web/Kannada/thithi.jpeg",
+        },
+        {
+          id: "16",
+          title: "Rama Rama Re...",
+          rating: 7.4,
+          year: 2016,
+          genre: "Comedy / Drama",
+          imageUrl: "/movie web/Kannada/rrr.jpg",
+        },
+        {
+          id: "17",
+          title: "Kshana Kshana",
+          rating: 7.3,
+          year: 2024,
+          genre: "Thriller / Mystery",
+          imageUrl: "/movie web/Kannada/kk.jpg",
+        },
+        {
+          id: "18",
+          title: "Gaalipata",
+          rating: 7.5,
+          year: 2008,
+          genre: "Comedy / Drama",
+          imageUrl: "/movie web/Kannada/galipata.jpg",
+        },
+        {
+          id: "19",
+          title: "Bell Bottom",
+          rating: 7.6,
+          year: 2019,
+          genre: "Comedy / Crime / Thriller",
+          imageUrl: "/movie web/Kannada/bell bottom.avif",
+        },
+        {
+          id: "20",
+          title: "Avane Srimannarayana",
+          rating: 7.9,
+          year: 2019,
+          genre: "Action / Comedy / Fantasy",
+          imageUrl: "/movie web/Kannada/asn.jpg",
+        },
+        {
+          id: "21",
+          title: "Ondu Motteya Kathe",
+          rating: 7.8,
+          year: 2017,
+          genre: "Comedy / Drama",
+          imageUrl: "/movie web/Kannada/omk.jpg",
+        },
+        {
+          id: "22",
+          title: "Naanu Matthu Gunda",
+          rating: 7.4,
+          year: 2016,
+          genre: "Comedy / Drama",
+          imageUrl: "/movie web/Kannada/nmg.jpg",
+        },
+        {
+          id: "23",
+          title: "Bangalore Days",
+          rating: 8.3,
+          year: 2014,
+          genre: "Drama / Romance",
+          imageUrl: "/movie web/Kannada/bd.jpeg",
+        },
+        {
+          id: "24",
+          title: "Kavaludaari",
+          rating: 7.8,
+          year: 2019,
+          genre: "Crime / Drama / Mystery",
+          imageUrl: "/movie web/Kannada/kavaludaari.jpg",
+        },
+        {
+          id: "25",
+          title: "Gultoo",
+          rating: 7.5,
+          year: 2018,
+          genre: "Crime / Drama / Thriller",
+          imageUrl: "/movie web/Kannada/gultoo.jpg",
+        },
+      ];
+
+      function createMovieCard(movie) {
+        return `
+                <div class="group bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-400/20">
+                  <img src="${movie.imageUrl}" alt="${
+          movie.title
+        }" class="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-110">
+                  <div class="p-4">
+                    <h5 class="text-white font-bold text-lg mb-2 line-clamp-1">${
+                      movie.title
+                    }</h5>
+                    <p class="text-gray-400 text-sm mb-1">${movie.year}</p>
+                    <p class="text-yellow-400 font-semibold">⭐ ${movie.rating.toFixed(
+                      1
+                    )}</p>
+                  </div>
+                </div>
+              `;
+      }
+
+      function renderMovieSections() {
+        const container = document.getElementById("movieSections");
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+
+        const filteredMovies = movies.filter((m) =>
+          m.title.toLowerCase().includes(query)
+        );
+
+        container.innerHTML = filteredMovies.map(createMovieCard).join("");
+      }
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", renderMovieSections);
+
+      // Initial render
+      renderMovieSections();
+    </script>
+  </body>
+</html>

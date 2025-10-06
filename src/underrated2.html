@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Underrated Movies</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Line clamp for movie titles */
+      .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-white">
+    <!-- Navbar -->
+    <nav
+      id="navbar"
+      class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex items-center gap-3">
+            <i class="text-yellow-400" style="width: 32px; height: 32px"></i>
+            <h1 class="text-2xl font-bold text-white">
+              /underrated/ <span class="text-yellow-400">Movies</span>
+            </h1>
+          </div>
+
+          <div id="nav-links" class="hidden md:flex items-center gap-8">
+            <!-- updated to scroll to the filter blocks -->
+            <button
+              onclick="scrollToSection('filter-genres')"
+              class="text-sm font-medium text-gray-300 hover:text-yellow-400"
+            >
+              Genres
+            </button>
+            <button
+              onclick="scrollToSection('filter-languages')"
+              class="text-sm font-medium text-gray-300 hover:text-yellow-400"
+            >
+              Languages
+            </button>
+            <button
+              onclick="scrollToSection('filter-types')"
+              class="text-sm font-medium text-gray-300 hover:text-yellow-400"
+            >
+              Types
+            </button>
+          </div>
+
+          <div class="relative w-64">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search movies..."
+              class="w-full bg-gray-800/50 backdrop-blur-sm text-white placeholder-gray-400 pl-10 pr-4 py-2 rounded-full border border-gray-700 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/20 transition-all duration-300"
+            />
+            <i
+              class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              style="width: 18px; height: 18px"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="pt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- FilterBar -->
+      <div class="mb-8" id="filterBar"></div>
+
+      <!-- Movie Sections -->
+      <div id="movieSections"></div>
+    </div>
+
+    <script>
+      // ---------- Dummy Movies ----------
+      const movies = [
+        {
+          id: "1",
+          title: "Tumbbad",
+          rating: 8.2,
+          year: 2018,
+          imageUrl: "/movie web/underrated/thumbad.jpg",
+          genre: "Suspense",
+          language: "Hindi",
+          type: "Cult",
+          tags: ["Hidden Gems", "Cult Classics"],
+        },
+        {
+          id: "2",
+          title: "Andhadhun",
+          rating: 8.3,
+          year: 2018,
+          imageUrl: "/movie web/underrated/andha.avif",
+          genre: "Suspense",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Top Rated"],
+        },
+        {
+          id: "3",
+          title: "Newton",
+          rating: 7.8,
+          year: 2017,
+          imageUrl: "/movie web/underrated/newton.jpg",
+          genre: "Comedy",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "4",
+          title: "Tamasha",
+          rating: 7.5,
+          year: 2015,
+          imageUrl: "/movie web/underrated/tamasha.jpg",
+          genre: "Comedy",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "5",
+          title: "Ye Sali Aasiquie",
+          rating: 8.9,
+          year: 2017,
+          imageUrl: "/movie web/underrated/ysa.jpg",
+          genre: "Drama",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Indie Hits"],
+        },
+        {
+          id: "7",
+          title: "Lunchbox",
+          rating: 8.5,
+          year: 2013,
+          imageUrl: "/movie web/b/lunchbox.jpeg",
+          genre: "Comedy",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "1",
+          title: "Pink",
+          rating: 8.1,
+          year: 2016,
+          imageUrl: "/movie web/underrated/pink.jpeg",
+          genre: "Drama",
+          language: "Hindi",
+          type: "Top Rated",
+          tags: ["Hidden Gem", "Classic"],
+        },
+        {
+          id: "2",
+          title: "Aksak",
+          rating: 7.2,
+          year: 2018,
+          imageUrl: "/movie web/underrated/ak.jpeg",
+          genre: "Thriller",
+          language: "Hindi",
+          type: "Cult",
+          tags: ["Cult", "Experimental"],
+        },
+        {
+          id: "3",
+          title: "Unchai",
+          rating: 7.6,
+          year: 2022,
+          imageUrl: "/movie web/underrated/unchai.jpeg",
+          genre: "Drama",
+          language: "Hindi",
+          type: "Feel-Good",
+          tags: ["Emotional", "Family"],
+        },
+        {
+          id: "4",
+          title: "Mimi",
+          rating: 7.5,
+          year: 2021,
+          imageUrl: "/movie web/underrated/mimi.jpeg",
+          genre: "Comedy",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Feel-Good", "Emotional"],
+        },
+        {
+          id: "5",
+          title: "Suzhal",
+          rating: 7.8,
+          year: 2020,
+          imageUrl: "/movie web/underrated/suzhal.jpeg",
+          genre: "Thriller",
+          language: "Hindi",
+          type: "Cult",
+          tags: ["Suspense", "Thriller"],
+        },
+        {
+          id: "6",
+          title: "Joseph",
+          rating: 8.0,
+          year: 2018,
+          imageUrl: "/movie web/underrated/joseph.jpeg",
+          genre: "Drama",
+          language: "Malayalam",
+          type: "Top Rated",
+          tags: ["Drama", "Emotional"],
+        },
+        {
+          id: "7",
+          title: "Manikarnika",
+          rating: 7.0,
+          year: 2019,
+          imageUrl: "/movie web/underrated/rani.jpeg",
+          genre: "Historical",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Action", "Drama"],
+        },
+        {
+          id: "8",
+          title: "Officer on Duty",
+          rating: 6.9,
+          year: 2021,
+          imageUrl: "/movie web/underrated/ond.jpeg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Action", "Thriller"],
+        },
+        {
+          id: "9",
+          title: "Master",
+          rating: 7.8,
+          year: 2021,
+          imageUrl: "/movie web/underrated/master.jpeg",
+          genre: "Action",
+          language: "Tamil",
+          type: "Hit",
+          tags: ["Action", "Thriller"],
+        },
+        {
+          id: "10",
+          title: "Turbo",
+          rating: 6.5,
+          year: 2020,
+          imageUrl: "/movie web/underrated/turbo.jpeg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Action", "Adventure"],
+        },
+        {
+          id: "11",
+          title: "Manjhi",
+          rating: 7.2,
+          year: 2015,
+          imageUrl: "/movie web/underrated/manjhi.jpeg",
+          genre: "Biography",
+          language: "Hindi",
+          type: "Top Rated",
+          tags: ["Inspirational", "Emotional"],
+        },
+        {
+          id: "12",
+          title: "Rekhachitram",
+          rating: 6.8,
+          year: 2021,
+          imageUrl: "/movie web/underrated/rekha.jpeg",
+          genre: "Thriller",
+          language: "Telugu",
+          type: "Indie Hits",
+          tags: ["Suspense", "Mystery"],
+        },
+        {
+          id: "13",
+          title: "Lubber Prabhu",
+          rating: 6.7,
+          year: 2019,
+          imageUrl: "/movie web/underrated/lp.jpeg",
+          genre: "Comedy",
+          language: "Hindi",
+          type: "Feel-Good",
+          tags: ["Comedy", "Family"],
+        },
+        {
+          id: "14",
+          title: "Reffile Club",
+          rating: 6.9,
+          year: 2020,
+          imageUrl: "/movie web/underrated/rc.jpeg",
+          genre: "Romance",
+          language: "Hindi",
+          type: "Feel-Good",
+          tags: ["Romance", "Drama"],
+        },
+        {
+          id: "15",
+          title: "Thangalan",
+          rating: 7.1,
+          year: 2021,
+          imageUrl: "/movie web/underrated/thanglan.jpeg",
+          genre: "Action",
+          language: "Tamil",
+          type: "Hit",
+          tags: ["Action", "Drama"],
+        },
+        {
+          id: "16",
+          title: "Janaganamana",
+          rating: 7.3,
+          year: 2022,
+          imageUrl: "/movie web/underrated/jgm.jpeg",
+          genre: "Drama",
+          language: "Telugu",
+          type: "Top Rated",
+          tags: ["Political Drama", "Action"],
+        },
+        {
+          id: "17",
+          title: "Kesari",
+          rating: 7.9,
+          year: 2019,
+          imageUrl: "/movie web/underrated/kesari.jpeg",
+          genre: "Historical",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["War Drama", "Action"],
+        },
+        {
+          id: "18",
+          title: "Maharaja",
+          rating: 6.5,
+          year: 2020,
+          imageUrl: "/movie web/underrated/maharaja.jpeg",
+          genre: "Drama",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Drama", "Action"],
+        },
+        {
+          id: "19",
+          title: "Thugs of Hindustan",
+          rating: 5.9,
+          year: 2018,
+          imageUrl: "/movie web/underrated/toh.jpeg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Action", "Adventure"],
+        },
+        {
+          id: "20",
+          title: "Breathe",
+          rating: 7.2,
+          year: 2018,
+          imageUrl: "/movie web/underrated/breathe.jpeg",
+          genre: "Drama",
+          language: "Hindi",
+          type: "Top Rated",
+          tags: ["Crime", "Suspense"],
+        },
+        {
+          id: "21",
+          title: "Operation Java",
+          rating: 7.6,
+          year: 2021,
+          imageUrl: "/movie web/underrated/oj.jpeg",
+          genre: "Thriller",
+          language: "Malayalam",
+          type: "Top Rated",
+          tags: ["Crime", "Investigation"],
+        },
+        {
+          id: "22",
+          title: "Blink",
+          rating: 6.7,
+          year: 2020,
+          imageUrl: "/movie web/underrated/blink.jpeg",
+          genre: "Thriller",
+          language: "Hindi",
+          type: "Indie Hits",
+          tags: ["Mystery", "Suspense"],
+        },
+        {
+          id: "23",
+          title: "Jigarthana Double XL",
+          rating: 6.5,
+          year: 2021,
+          imageUrl: "/movie web/underrated/jt.jpeg",
+          genre: "Comedy",
+          language: "Hindi",
+          type: "Feel-Good",
+          tags: ["Comedy", "Family"],
+        },
+        {
+          id: "24",
+          title: "Kuberaa",
+          rating: 6.9,
+          year: 2020,
+          imageUrl: "/movie web/underrated/kubera.jpeg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Action", "Drama"],
+        },
+        {
+          id: "25",
+          title: "Premam",
+          rating: 8.0,
+          year: 2015,
+          imageUrl: "/movie web/underrated/premam.jpeg",
+          genre: "Romance",
+          language: "Malayalam",
+          type: "Top Rated",
+          tags: ["Romance", "Feel-Good"],
+        },
+        {
+          id: "26",
+          title: "Berlin",
+          rating: 7.3,
+          year: 2023,
+          imageUrl: "/movie web/underrated/berlin.jpeg",
+          genre: "Thriller",
+          language: "Hindi",
+          type: "Indie Hits",
+          tags: ["Mystery", "Suspense"],
+        },
+        {
+          id: "27",
+          title: "Mirai",
+          rating: 7.0,
+          year: 2018,
+          imageUrl: "/movie web/underrated/mirai.jpeg",
+          genre: "Animation",
+          language: "Hindi",
+          type: "Classic",
+          tags: ["Family", "Feel-Good"],
+        },
+        {
+          id: "28",
+          title: "Sita Ramam",
+          rating: 8.1,
+          year: 2022,
+          imageUrl: "/movie web/underrated/sr.jpeg",
+          genre: "Romance",
+          language: "Telugu",
+          type: "Top Rated",
+          tags: ["Romance", "Drama"],
+        },
+        {
+          id: "29",
+          title: "Pani",
+          rating: 7.0,
+          year: 2019,
+          imageUrl: "/movie web/underrated/pani.jpeg",
+          genre: "Drama",
+          language: "Hindi",
+          type: "Emotional",
+          tags: ["Drama", "Family"],
+        },
+        {
+          id: "30",
+          title: "Rocketry",
+          rating: 7.2,
+          year: 2022,
+          imageUrl: "/movie web/underrated/rock.jpeg",
+          genre: "Biography",
+          language: "Hindi",
+          type: "Top Rated",
+          tags: ["Biography", "Inspirational"],
+        },
+        {
+          id: "31",
+          title: "Virupaksha",
+          rating: 7.7,
+          year: 2023,
+          imageUrl: "/movie web/underrated/virupaksha.jpeg",
+          genre: "Thriller",
+          language: "Kannada",
+          type: "Top Rated",
+          tags: ["Mystery", "Suspense"],
+        },
+        {
+          id: "32",
+          title: "Mangalvaram",
+          rating: 7.1,
+          year: 2022,
+          imageUrl: "/movie web/underrated/mangalvaram.jpeg",
+          genre: "Drama",
+          language: "Hindi",
+          type: "Emotional",
+          tags: ["Drama", "Feel-Good"],
+        },
+        {
+          id: "33",
+          title: "Salute",
+          rating: 7.5,
+          year: 2023,
+          imageUrl: "/movie web/underrated/salute.jpeg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Action", "Thriller"],
+        },
+        {
+          id: "34",
+          title: "Meiyaghagan",
+          rating: 7.0,
+          year: 2021,
+          imageUrl: "/movie web/underrated/meiyaghagan.jpeg",
+          genre: "Drama",
+          language: "Tamil",
+          type: "Top Rated",
+          tags: ["Drama", "Emotional"],
+        },
+        {
+          id: "35",
+          title: "Fateh",
+          rating: 6.3,
+          year: 2025,
+          imageUrl: "/movie web/underrated/fateh.jpeg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Action", "Crime"],
+        },
+        {
+          id: "36",
+          title: "Sirf Ek Banda Kafi Hai",
+          rating: 7.3,
+          year: 2022,
+          imageUrl: "/movie web/underrated/sebkh.jpeg",
+          genre: "Drama",
+          language: "Hindi",
+          type: "Top Rated",
+          tags: ["Drama", "Feel-Good"],
+        },
+        {
+          id: "37",
+          title: "Maareesan",
+          rating: 7.4,
+          year: 2025,
+          imageUrl: "/movie web/underrated/maaresan.jpeg",
+          genre: "Action",
+          language: "Tamil",
+          type: "Hit",
+          tags: ["Action", "Thriller"],
+        },
+        {
+          id: "38",
+          title: "The Great Indian Kitchen",
+          rating: 8.0,
+          year: 2021,
+          imageUrl: "/movie web/underrated/tgik.jpeg",
+          genre: "Drama",
+          language: "Malayalam",
+          type: "Top Rated",
+          tags: ["Drama", "Emotional"],
+        },
+        {
+          id: "39",
+          title: "ARM",
+          rating: 6.8,
+          year: 2020,
+          imageUrl: "/movie web/underrated/arm.jpeg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Action", "Crime"],
+        },
+        {
+          id: "40",
+          title: "Masaan",
+          rating: 8.1,
+          year: 2015,
+          imageUrl: "/movie web/underrated/masaan.jpeg",
+          genre: "Drama",
+          language: "Hindi",
+          type: "Emotional",
+          tags: ["Drama", "Feel-Good"],
+        },
+        {
+          id: "41",
+          title: "Jaya Jaya Jaya Hey",
+          rating: 7.4,
+          year: 2022,
+          imageUrl: "/movie web/underrated/jjjh.jpeg",
+          genre: "Comedy",
+          language: "Malayalam",
+          type: "Feel-Good",
+          tags: ["Comedy", "Family"],
+        },
+        {
+          id: "42",
+          title: "Annapoorni",
+          rating: 7.0,
+          year: 2020,
+          imageUrl: "/movie web/underrated/anapurna.jpeg",
+          genre: "Drama",
+          language: "Telugu",
+          type: "Emotional",
+          tags: ["Drama", "Feel-Good"],
+        },
+        {
+          id: "43",
+          title: "Kumbalangi Nights",
+          rating: 8.6,
+          year: 2019,
+          imageUrl: "/movie web/underrated/kn.jpeg",
+          genre: "Drama",
+          language: "Malayalam",
+          type: "Top Rated",
+          tags: ["Drama", "Feel-Good"],
+        },
+        {
+          id: "44",
+          title: "Parking",
+          rating: 6.8,
+          year: 2019,
+          imageUrl: "/movie web/underrated/parking.jpeg",
+          genre: "Thriller",
+          language: "Hindi",
+          type: "Indie Hits",
+          tags: ["Suspense", "Crime"],
+        },
+        {
+          id: "45",
+          title: "Daaku Maharaj",
+          rating: 6.5,
+          year: 2018,
+          imageUrl: "/movie web/underrated/dm.jpeg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Action", "Drama"],
+        },
+        {
+          id: "46",
+          title: "Gabbar is Back",
+          rating: 6.7,
+          year: 2015,
+          imageUrl: "/movie web/underrated/gib.jpeg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Action", "Thriller"],
+        },
+        {
+          id: "47",
+          title: "Toby",
+          rating: 7.1,
+          year: 2022,
+          imageUrl: "/movie web/underrated/toby.jpeg",
+          genre: "Drama",
+          language: "Hindi",
+          type: "Emotional",
+          tags: ["Drama", "Family"],
+        },
+        {
+          id: "48",
+          title: "Mark Anthony",
+          rating: 7.2,
+          year: 2023,
+          imageUrl: "/movie web/underrated/ma.jpg",
+          genre: "Action",
+          language: "Telugu",
+          type: "Hit",
+          tags: ["Action", "Thriller"],
+        },
+        {
+          id: "49",
+          title: "Saaho",
+          rating: 7.0,
+          year: 2019,
+          imageUrl: "/movie web/underrated/saaho.jpg",
+          genre: "Action",
+          language: "Telugu",
+          type: "Hit",
+          tags: ["Action", "Thriller"],
+        },
+        {
+          id: "50",
+          title: "Vash",
+          rating: 6.8,
+          year: 2023,
+          imageUrl: "/movie web/underrated/vash.jpg",
+          genre: "Action",
+          language: "Gujarati",
+          type: "Top Rated",
+          tags: ["Action", "Drama"],
+        },
+        {
+          id: "51",
+          title: "Vishwaguru",
+          rating: 6.9,
+          year: 2022,
+          imageUrl: "/movie web/underrated/vishwguru.jpeg",
+          genre: "Drama",
+          language: "Gujarati",
+          type: "Top Rated",
+          tags: ["Drama", "Emotional"],
+        },
+        {
+          id: "52",
+          title: "Hu and Tu",
+          rating: 7.0,
+          year: 2021,
+          imageUrl: "/movie web/underrated/hat.jpg",
+          genre: "Comedy",
+          language: "Gujarati",
+          type: "Feel-Good",
+          tags: ["Comedy", "Family"],
+        },
+        {
+          id: "53",
+          title: "Karsandas",
+          rating: 6.7,
+          year: 2019,
+          imageUrl: "/movie web/underrated/kpau.jpeg",
+          genre: "Comedy",
+          language: "Gujarati",
+          type: "Feel-Good",
+          tags: ["Comedy", "Romance"],
+        },
+        {
+          id: "54",
+          title: "Ponman",
+          rating: 7.0,
+          year: 2021,
+          imageUrl: "/movie web/underrated/ponman.jpeg",
+          genre: "Action",
+          language: "Malayalam",
+          type: "Hit",
+          tags: ["Action", "Thriller"],
+        },
+        {
+          id: "55",
+          title: "Neru",
+          rating: 6.9,
+          year: 2020,
+          imageUrl: "/movie web/underrated/neru.jpg",
+          genre: "Action",
+          language: "Malayalam",
+          type: "Hit",
+          tags: ["Action", "Thriller"],
+        },
+        {
+          id: "56",
+          title: "Lokah",
+          rating: 7.1,
+          year: 2022,
+          imageUrl: "/movie web/underrated/lokah.jpg",
+          genre: "Drama",
+          language: "Malayalam",
+          type: "Top Rated",
+          tags: ["Drama", "Feel-Good"],
+        },
+        {
+          id: "57",
+          title: "Kiskindakadam",
+          rating: 6.8,
+          year: 2021,
+          imageUrl: "/movie web/underrated/kk.jpg",
+          genre: "Action",
+          language: "Malayalam",
+          type: "Flop",
+          tags: ["Action", "Thriller"],
+        },
+        {
+          id: "58",
+          title: "Thudaram",
+          rating: 7.0,
+          year: 2020,
+          imageUrl: "/movie web/underrated/thudaram.jpg",
+          genre: "Action",
+          language: "Malayalam",
+          type: "Hit",
+          tags: ["Action", "Thriller"],
+        },
+        {
+          id: "59",
+          title: "Kaithi",
+          rating: 8.0,
+          year: 2019,
+          imageUrl: "/movie web/underrated/kaithi.jpg",
+          genre: "Action",
+          language: "Tamil",
+          type: "Top Rated",
+          tags: ["Action", "Thriller"],
+        },
+        // add more movies here...
+      ];
+
+      // ---------- Filter categories ----------
+      const categories = [
+        { label: "Drama", value: "Drama" },
+        { label: "Action", value: "Action" },
+        { label: "Sci-Fi", value: "Sci-Fi" },
+        { label: "Animation", value: "Animation" },
+        { label: "Thriller", value: "Thriller" },
+        { label: "Suspense", value: "Suspense" },
+        { label: "Comedy", value: "Comedy" },
+        { label: "Romance", value: "Romance" },
+        { label: "Horror", value: "Horror" },
+        { label: "Crime", value: "Crime" },
+        { label: "Family", value: "Family" },
+        { label: "Historical", value: "Historical" },
+        { label: "Biography", value: "Biography" },
+        { label: "Musical", value: "Musical" },
+        { label: "Sports", value: "Sports" },
+        { label: "Superhero", value: "Superhero" },
+      ];
+
+      const languages = [
+        { label: "Hindi", value: "Hindi" },
+        { label: "English", value: "English" },
+        { label: "Telugu", value: "Telugu" },
+        { label: "Gujarati", value: "Gujarati" },
+        { label: "Malayalam", value: "Malayalam" },
+        { label: "Tamil", value: "Tamil" },
+        { label: "Kannada", value: "Kannada" },
+        { label: "Bengali", value: "Bengoli" },
+        { label: "Punjabi", value: "Punjabi" },
+        { label: "Marathi", value: "Marathi" },
+        { label: "Korean", value: "Korean" },
+      ];
+
+      const types = [
+        { label: "Hidden Gem", value: "Hidden Gem" },
+        { label: "Classic", value: "Classic" },
+
+        { label: "Feel-Good", value: "Feel-Good" },
+
+        { label: "Top Rated", value: "Top Rated" },
+        { label: "Indie Hits", value: "Indie Hits" },
+
+        { label: "Flop", value: "Flop" },
+        { label: "Hit", value: "Hit" },
+        { label: "Emotional", value: "Emotional" },
+        { label: "Cult", value: "Cult" },
+        { label: "Experimental", value: "Experimental" },
+      ];
+
+      // ---------- State ----------
+      let activeFilters = {
+        genres: [],
+        languages: [],
+        types: [],
+      };
+      let searchQuery = "";
+
+      // ---------- Filter bar rendering ----------
+      function renderFilterBar() {
+        const container = document.getElementById("filterBar");
+        container.innerHTML = `
+                      <h3 id="filter-genres" class="text-lg font-semibold text-gray-300 mb-4">Filter by Genre</h3>
+                      <div class="flex flex-wrap gap-3 mb-8">
+                        ${categories
+                          .map((cat) => filterButton("genres", cat))
+                          .join("")}
+                      </div>
+
+                      <h3 id="filter-languages" class="text-lg font-semibold text-gray-300 mb-4">Filter by Language</h3>
+                      <div class="flex flex-wrap gap-3 mb-8">
+                        ${languages
+                          .map((lang) => filterButton("languages", lang))
+                          .join("")}
+                      </div>
+
+                      <h3 id="filter-types" class="text-lg font-semibold text-gray-300 mb-4">Filter by Type</h3>
+                      <div class="flex flex-wrap gap-3">
+                        ${types.map((t) => filterButton("types", t)).join("")}
+                      </div>
+                    `;
+      }
+
+      function filterButton(type, item) {
+        const isActive = activeFilters[type].includes(item.value);
+        // escape item.value safely for onclick string
+        const safeValue = item.value.replace(/'/g, "\\'");
+        return `<button onclick="toggleFilter('${type}','${safeValue}')"
+                      class="px-5 py-2.5 rounded-full font-medium transition-all duration-300 ${
+                        isActive
+                          ? "bg-yellow-400 text-gray-900 shadow-lg shadow-yellow-400/50 scale-105"
+                          : "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white hover:scale-105"
+                      }">
+                      ${item.label}
+                    </button>`;
+      }
+
+      function toggleFilter(type, value) {
+        if (!activeFilters[type]) return;
+        if (activeFilters[type].includes(value)) {
+          activeFilters[type] = activeFilters[type].filter((v) => v !== value);
+        } else {
+          activeFilters[type].push(value);
+        }
+        renderFilterBar();
+        renderMovieSections();
+      }
+
+      // ---------- Movie card ----------
+      function createMovieCard(movie) {
+        return `
+                      <div class="group bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-400/20">
+                        <div class="relative overflow-hidden">
+                          <img src="${movie.imageUrl}" alt="${movie.title}"
+                            class="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-110">
+                          <div class="absolute top-3 right-3 bg-black/80 backdrop-blur-sm px-3 py-1 rounded-full">
+                            <span class="text-yellow-400 font-semibold">⭐ ${
+                              movie.rating ? movie.rating.toFixed(1) : "—"
+                            }</span>
+                          </div>
+                        </div>
+                        <div class="p-4">
+                          <h5 class="text-white font-bold text-lg mb-2 line-clamp-1">${
+                            movie.title
+                          }</h5>
+                          <p class="text-gray-400 text-sm mb-3">${
+                            movie.year
+                          } • ${movie.genre} • ${movie.language} • ${
+          movie.type ?? ""
+        }</p>
+                          ${
+                            movie.tags?.length > 0
+                              ? `<div class="flex flex-wrap gap-2">
+                            ${movie.tags
+                              .slice(0, 2)
+                              .map(
+                                (tag) =>
+                                  `<span class="text-xs bg-yellow-400/10 text-yellow-400 px-2 py-1 rounded-full border border-yellow-400/20">${tag}</span>`
+                              )
+                              .join("")}
+                          </div>`
+                              : ""
+                          }
+                        </div>
+                      </div>
+                    `;
+      }
+
+      // ---------- Movie sections rendering (applies filters + search) ----------
+      let expandedSections = {};
+      function renderMovieSections() {
+        const container = document.getElementById("movieSections");
+
+        // start with all movies
+        let filteredMovies = movies.slice();
+
+        // apply genre filter
+        if (activeFilters.genres.length > 0) {
+          filteredMovies = filteredMovies.filter((m) =>
+            activeFilters.genres.includes(m.genre)
+          );
+        }
+
+        // apply language filter
+        if (activeFilters.languages.length > 0) {
+          filteredMovies = filteredMovies.filter((m) =>
+            activeFilters.languages.includes(m.language)
+          );
+        }
+
+        // apply type filter
+        if (activeFilters.types.length > 0) {
+          filteredMovies = filteredMovies.filter((m) =>
+            activeFilters.types.includes(m.type)
+          );
+        }
+
+        // apply search (title, genre, language, type, tags)
+        if (searchQuery.trim() !== "") {
+          const q = searchQuery.toLowerCase();
+          filteredMovies = filteredMovies.filter((m) => {
+            const inTitle = m.title?.toLowerCase().includes(q);
+            const inGenre = m.genre?.toLowerCase().includes(q);
+            const inLanguage = m.language?.toLowerCase().includes(q);
+            const inType = (m.type ?? "").toLowerCase().includes(q);
+            const inTags = (m.tags ?? []).join(" ").toLowerCase().includes(q);
+            return inTitle || inGenre || inLanguage || inType || inTags;
+          });
+        }
+
+        // If nothing matches, show a "no results" message
+        if (filteredMovies.length === 0) {
+          container.innerHTML = `
+                        <section id="movies" class="mb-16 scroll-mt-24">
+                          <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-3xl font-bold text-yellow-400">Movies</h3>
+                            <div class="h-px flex-1 bg-gradient-to-r from-yellow-400/50 to-transparent ml-6"></div>
+                          </div>
+
+                          <div class="flex items-center justify-center p-12">
+                            <div class="text-center">
+                              <p class="text-gray-400 mb-4">No movies found matching your filters.</p>
+                              <button onclick="clearAllFilters()" class="bg-yellow-400 text-gray-900 font-semibold px-4 py-2 rounded-full hover:bg-yellow-500">Clear filters</button>
+                            </div>
+                          </div>
+                        </section>
+                      `;
+          return;
+        }
+
+        // show grid of results
+        container.innerHTML = `
+                      <section id="movies" class="mb-16 scroll-mt-24">
+                        <div class="flex items-center justify-between mb-6">
+                          <h3 class="text-3xl font-bold text-yellow-400">Movies</h3>
+                          <div class="h-px flex-1 bg-gradient-to-r from-yellow-400/50 to-transparent ml-6"></div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-6">
+                          ${filteredMovies
+                            .slice(
+                              0,
+                              expandedSections["movies"]
+                                ? filteredMovies.length
+                                : 8
+                            )
+                            .map(createMovieCard)
+                            .join("")}
+                        </div>
+
+                        ${
+                          filteredMovies.length > 8
+                            ? `<div class="flex justify-center">
+                                <button onclick="toggleExpand('movies')" class="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50">
+                                  ${
+                                    expandedSections["movies"]
+                                      ? "Show Less"
+                                      : "See More"
+                                  }
+                                </button>
+                              </div>`
+                            : ""
+                        }
+                      </section>
+                    `;
+      }
+
+      function toggleExpand(sectionId) {
+        expandedSections[sectionId] = !expandedSections[sectionId];
+        renderMovieSections();
+      }
+
+      function clearAllFilters() {
+        activeFilters = { genres: [], languages: [], types: [] };
+        searchQuery = "";
+        document.getElementById("searchInput").value = "";
+        renderFilterBar();
+        renderMovieSections();
+      }
+
+      // ---------- Navbar scroll effect ----------
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        navbar.classList.toggle("bg-gray-900/95", window.scrollY > 20);
+        navbar.classList.toggle("backdrop-blur-md", window.scrollY > 20);
+        navbar.classList.toggle("shadow-lg", window.scrollY > 20);
+      });
+
+      function scrollToSection(id) {
+        const element = document.getElementById(id);
+        if (element) {
+          const offset = 90; // offset to clear navbar
+          const top =
+            element.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      }
+
+      // ---------- Search input (works with filters) ----------
+      document.getElementById("searchInput").addEventListener("input", (e) => {
+        searchQuery = e.target.value.toLowerCase();
+        renderMovieSections();
+      });
+
+      // ---------- Initial render ----------
+      renderFilterBar();
+      renderMovieSections();
+    </script>
+  </body>
+</html>

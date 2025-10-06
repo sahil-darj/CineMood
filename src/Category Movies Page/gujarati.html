@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gujarati Movies</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Line clamp for movie titles */
+      .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-white">
+    <div class="pt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Title -->
+      <h1 class="text-4xl font-bold text-yellow-400 mb-6">Gujarati Movies</h1>
+
+      <!-- Search bar -->
+      <div class="mb-8 relative w-full max-w-md">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search movies..."
+          class="w-full bg-gray-800/50 backdrop-blur-sm text-white placeholder-gray-400 pl-4 pr-4 py-2 rounded-full border border-gray-700 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/20 transition-all duration-300"
+        />
+      </div>
+
+      <!-- Movie grid -->
+      <div
+        id="movieSections"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      ></div>
+    </div>
+
+    <script>
+      const movies = [
+        {
+          id: "1",
+          title: "Ajab Vat Ni Gajab Vat",
+          rating: 7.2,
+          year: 2024,
+          genre: "Comedy / Drama",
+          imageUrl: "/movie web/Gujarati/arngv.jpg",
+        },
+        {
+          id: "2",
+          title: "Vash",
+          rating: 7.8,
+          year: 2023,
+          genre: "Horror / Thriller",
+          imageUrl: "/movie web/Gujarati/vash.jpg",
+        },
+        {
+          id: "3",
+          title: "Vash 2",
+          rating: 8.1,
+          year: 2025,
+          genre: "Horror / Thriller / Mystery",
+          imageUrl: "/movie web/Gujarati/vash2.avif",
+        },
+        {
+          id: "4",
+          title: "Valam Joone",
+          rating: 7.5,
+          year: 2024,
+          genre: "Romance / Drama",
+          imageUrl: "/movie web/Gujarati/vjn.jpg",
+        },
+        {
+          id: "5",
+          title: "Chaniya Toli",
+          rating: 7.0,
+          year: 2025,
+          genre: "Drama / Family",
+          imageUrl: "/movie web/Gujarati/ct.jpg",
+        },
+        {
+          id: "6",
+          title: "Love Ni Love Story",
+          rating: 6.8,
+          year: 2016,
+          genre: "Romance / Drama",
+          imageUrl: "/movie web/Gujarati/lls.jpeg",
+        },
+        {
+          id: "7",
+          title: "Kamthan",
+          rating: 7.3,
+          year: 2024,
+          genre: "Action / Thriller / Drama",
+          imageUrl: "/movie web/Gujarati/kamthan.jpg",
+        },
+        {
+          id: "8",
+          title: "Vishwaguru",
+          rating: 8.0,
+          year: 2023,
+          genre: "Drama / Biography",
+          imageUrl: "/movie web/Gujarati/vishwguru.jpeg",
+        },
+        {
+          id: "9",
+          title: "Hu & Tu",
+          rating: 7.2,
+          year: 2023,
+          genre: "Romance / Drama / Comedy",
+          imageUrl: "/movie web/Gujarati/hat.jpg",
+        },
+        {
+          id: "10",
+          title: "Love Ni Bhavai",
+          rating: 8.3,
+          year: 2017,
+          genre: "Romance / Comedy / Drama",
+          imageUrl: "/movie web/Gujarati/lnb.jpeg",
+        },
+        {
+          id: "11",
+          title: "Chello Divas",
+          rating: 8.3,
+          year: 2015,
+          genre: "Comedy / Drama",
+          imageUrl: "/movie web/Gujarati/cd.jpeg",
+        },
+        {
+          id: "12",
+          title: "Su Thayu?",
+          rating: 7.5,
+          year: 2018,
+          genre: "Comedy / Drama",
+          imageUrl: "/movie web/Gujarati/st.jpg",
+        },
+        {
+          id: "13",
+          title: "3 Ekka",
+          rating: 8.0,
+          year: 2023,
+          genre: "Comedy / Drama",
+          imageUrl: "/movie web/Gujarati/3ekka.jpg",
+        },
+        {
+          id: "14",
+          title: "Karsandas Pay & Use",
+          rating: 8.2,
+          year: 2017,
+          genre: "Comedy / Romance / Drama",
+          imageUrl: "/movie web/Gujarati/kpau.jpeg",
+        },
+        {
+          id: "15",
+          title: "Haha Car",
+          rating: 7.1,
+          year: 2024,
+          genre: "Comedy / Drama",
+          imageUrl: "/movie web/Gujarati/haha.jpeg",
+        },
+        {
+          id: "16",
+          title: "Sarto Lagu",
+          rating: 8.0,
+          year: 2017,
+          genre: "Romance / Comedy / Drama",
+          imageUrl: "/movie web/Gujarati/sl.jpeg",
+        },
+        {
+          id: "17",
+          title: "Dear Father",
+          rating: 8.2,
+          year: 2022,
+          genre: "Drama / Family / Thriller",
+          imageUrl: "/movie web/Gujarati/df.jpeg",
+        },
+        {
+          id: "18",
+          title: "Mithda Mehman",
+          rating: 7.4,
+          year: 2024,
+          genre: "Comedy / Drama / Family",
+          imageUrl: "/movie web/Gujarati/mm.jpeg",
+        },
+        {
+          id: "19",
+          title: "Golkeri",
+          rating: 7.5,
+          year: 2020,
+          genre: "Comedy / Drama / Family",
+          imageUrl: "/movie web/Gujarati/golkeri.jpeg",
+        },
+        {
+          id: "20",
+          title: "Chal Jeevi Laiye",
+          rating: 8.4,
+          year: 2019,
+          genre: "Drama / Family / Adventure",
+          imageUrl: "/movie web/Gujarati/cjl.jpeg",
+        },
+        {
+          id: "21",
+          title: "Itta Kitta",
+          rating: 7.6,
+          year: 2023,
+          genre: "Romance / Comedy",
+          imageUrl: "/movie web/Gujarati/ik.jpeg",
+        },
+        {
+          id: "22",
+          title: "Gujjubhai the Great",
+          rating: 7.3,
+          year: 2015,
+          genre: "Comedy / Drama",
+          imageUrl: "/movie web/Gujarati/gg.jpeg",
+        },
+        {
+          id: "23",
+          title: "Gujjubhai Most Wanted",
+          rating: 6.9,
+          year: 2018,
+          genre: "Comedy / Drama",
+          imageUrl: "/movie web/Gujarati/gg2.jpg",
+        },
+        {
+          id: "24",
+          title: "Zamkudi",
+          rating: 7.8,
+          year: 2025,
+          genre: "Comedy / Drama / Family",
+          imageUrl: "/movie web/Gujarati/zamkudi.jpeg",
+        },
+      ];
+
+      function createMovieCard(movie) {
+        return `
+          <div class="group bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-400/20">
+            <img src="${movie.imageUrl}" alt="${
+          movie.title
+        }" class="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="p-4">
+              <h5 class="text-white font-bold text-lg mb-2 line-clamp-1">${
+                movie.title
+              }</h5>
+              <p class="text-gray-400 text-sm mb-1">${movie.year}</p>
+              <p class="text-yellow-400 font-semibold">⭐ ${movie.rating.toFixed(
+                1
+              )}</p>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderMovieSections() {
+        const container = document.getElementById("movieSections");
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+
+        const filteredMovies = movies.filter((m) =>
+          m.title.toLowerCase().includes(query)
+        );
+
+        container.innerHTML = filteredMovies.map(createMovieCard).join("");
+      }
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", renderMovieSections);
+
+      // Initial render
+      renderMovieSections();
+    </script>
+  </body>
+</html>

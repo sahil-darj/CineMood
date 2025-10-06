@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bollywood Movies</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Line clamp for movie titles */
+      .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-white">
+    <div class="pt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Title -->
+      <h1 class="text-4xl font-bold text-yellow-400 mb-6">Bollywood Movies</h1>
+
+      <!-- Search bar -->
+      <div class="mb-8 relative w-full max-w-md">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search movies..."
+          class="w-full bg-gray-800/50 backdrop-blur-sm text-white placeholder-gray-400 pl-4 pr-4 py-2 rounded-full border border-gray-700 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/20 transition-all duration-300"
+        />
+      </div>
+
+      <!-- Movie grid -->
+      <div
+        id="movieSections"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      ></div>
+    </div>
+
+    <script>
+      const movies = [
+        {
+          id: "1",
+          title: "Tumbbad",
+          rating: 8.2,
+          year: 2018,
+          imageUrl: "/movie web/thumbad.jpg",
+          genre: "Suspense",
+          language: "Hindi",
+          type: "Cult",
+          tags: ["Hidden Gems", "Cult Classics"],
+        },
+        {
+          id: "2",
+          title: "Andhadhun",
+          rating: 8.3,
+          year: 2018,
+          imageUrl: "/movie web/andha.avif",
+          genre: "Suspense",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Top Rated"],
+        },
+        {
+          id: "3",
+          title: "Newton",
+          rating: 7.8,
+          year: 2017,
+          imageUrl: "/movie web/newton.jpg",
+          genre: "Comedy",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "4",
+          title: "Tamasha",
+          rating: 7.5,
+          year: 2015,
+          imageUrl: "/movie web/tamasha.jpg",
+          genre: "Comedy",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "5",
+          title: "Ye Sali Aasiquie",
+          rating: 8.9,
+          year: 2017,
+          imageUrl: "/movie web/ysa.jpg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+        {
+          id: "7",
+          title: "Lunchbox",
+          rating: 8.5,
+          year: 2013,
+          imageUrl: "/movie web/b/lunchbox.jpeg",
+          genre: "Comedy",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "8",
+          title: "Stree",
+          rating: 8.9,
+          year: 2018,
+          imageUrl: "/movie web/b/stree.jpeg",
+          genre: "Horror",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "9",
+          title: "1920",
+          rating: 6.5,
+          year: 2008,
+          imageUrl: "/movie web/b/1920.jpg",
+          genre: "Horror",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "10",
+          title: "Mission Majnu",
+          rating: 6.9,
+          year: 2023,
+          imageUrl: "/movie web/b/mm.jpeg",
+          genre: "Thriller",
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "11",
+          title: "Agneepath",
+          rating: 8.2,
+          year: 2012,
+          imageUrl: "/movie web/b/Agneepath.jpeg",
+          genre: "Drama",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "12",
+          title: "Gans Of Wasseypur",
+          rating: 8.2,
+          year: 2012,
+          imageUrl: "/movie web/b/gow.jpeg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "13",
+          title: "Animal",
+          rating: 7.2,
+          year: 2023,
+          imageUrl: "/movie web/b/animal2.jpeg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "14",
+          title: "Gabbar is Back",
+          rating: 6.5,
+          year: 2015,
+          imageUrl: "/movie web/b/gib.jpeg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "15",
+          title: "Badlapur",
+          rating: 7.6,
+          year: 2015,
+          imageUrl: "/movie web/b/badlapur.jpeg",
+          genre: "Action",
+
+          language: "Hindi",
+          type: "Flop",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "16",
+          title: "Vicky Donor",
+          rating: 7.5,
+          year: 2012,
+          imageUrl: "/movie web/b/vd.jpg",
+          genre: "Comedy",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "17",
+          title: "Welcome",
+          rating: 7.0,
+          year: 2007,
+          imageUrl: "/movie web/b/welcome.jpg",
+          genre: "Comedy",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "18",
+          title: "MS Dhoni",
+          rating: 7.8,
+          year: 2016,
+          imageUrl: "/movie web/b/dhoni.jpg",
+          genre: "Biography",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "19",
+          title: "Fighter",
+          rating: 6.8,
+          year: 2024,
+          imageUrl: "/movie web/b/fighter.jpg",
+          genre: "Action",
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "20",
+          title: "Sikandar",
+          rating: 7.1,
+          year: 2025,
+          imageUrl: "/movie web/b/sikandar.jpg",
+          genre: "Drama",
+
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "21",
+          title: "Kesari Chapter 2",
+          rating: 7.3,
+          year: 2025,
+          imageUrl: "/movie web/b/kesari.jpg",
+          genre: "Action",
+
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "22",
+          title: "Showtime",
+          rating: 8.3,
+          year: 2024,
+          imageUrl: "/movie web/b/showtime.jpg",
+          genre: "Drama",
+
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "23",
+          title: "The Night Manager",
+          rating: 8.1,
+          year: 2023,
+          imageUrl: "/movie web/b/tnm.jpg",
+          genre: "Thriller",
+
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "24",
+          title: "Shaitaan",
+          rating: 7.0,
+          year: 2024,
+          imageUrl: "/movie web/b/shaitan.jpg",
+          genre: "Horror",
+
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "25",
+          title: "Dunki",
+
+          rating: 6.8,
+          year: 2023,
+          imageUrl: "/movie web/b/dunki.jpg",
+          genre: "Drama",
+
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "26",
+          title: "Kabir Singh",
+          rating: 7.1,
+          year: 2019,
+          imageUrl: "/movie web/b/ks.jpg",
+          genre: "Drama",
+
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "27",
+          title: "Jolly LLB 3",
+          rating: 7.9,
+          year: 2025,
+          imageUrl: "/movie web/b/jollyllb3.jpg",
+          genre: "Comedy",
+
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "28",
+          title: "Dil Wale Dulhaniya Le Jayenge",
+          rating: 8.1,
+          year: 1995,
+          imageUrl: "/movie web/b/ddlj.jpg",
+          genre: "Romance",
+
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "29",
+          title: "The Bads Of Bollywood",
+
+          rating: 8.8,
+          year: 2025,
+          imageUrl: "/movie web/b/tbob.jpg",
+          genre: "Drama",
+
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+
+        {
+          id: "30",
+          title: "Zindagi Na Milegi Dobara",
+
+          rating: 8.9,
+          year: 2011,
+          imageUrl: "/movie web/b/znmd.jpg",
+          genre: "Drama",
+
+          language: "Hindi",
+          type: "Hit",
+          tags: ["Indie Hits"],
+        },
+      ];
+
+      function createMovieCard(movie) {
+        return `
+          <div class="group bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-400/20">
+            <img src="${movie.imageUrl}" alt="${
+          movie.title
+        }" class="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="p-4">
+              <h5 class="text-white font-bold text-lg mb-2 line-clamp-1">${
+                movie.title
+              }</h5>
+              <p class="text-gray-400 text-sm mb-1">${movie.year}</p>
+              <p class="text-yellow-400 font-semibold">⭐ ${movie.rating.toFixed(
+                1
+              )}</p>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderMovieSections() {
+        const container = document.getElementById("movieSections");
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+
+        const filteredMovies = movies.filter((m) =>
+          m.title.toLowerCase().includes(query)
+        );
+
+        container.innerHTML = filteredMovies.map(createMovieCard).join("");
+      }
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", renderMovieSections);
+
+      // Initial render
+      renderMovieSections();
+    </script>
+  </body>
+</html>

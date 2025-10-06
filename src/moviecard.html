@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Card</title>
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      .movie-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .movie-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      }
+      .overlay {
+        transition: opacity 0.3s ease;
+      }
+      .movie-card:hover .overlay {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 flex items-center justify-center min-h-screen">
+    <!-- Movie Card -->
+    <div
+      class="movie-card bg-gray-800 rounded-lg overflow-hidden shadow-lg w-64 cursor-pointer"
+    >
+      <div class="relative">
+        <img
+          src="images/tpoh.jpg"
+          alt="The Pursuit of Happyness"
+          class="w-full h-64 object-cover"
+        />
+        <div
+          class="overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0"
+        ></div>
+      </div>
+      <div class="p-4">
+        <h3 class="text-white font-semibold text-lg mb-1 truncate">
+          The Pursuit of Happyness
+        </h3>
+        <p class="text-gray-400 text-sm mb-2">2006</p>
+        <div class="flex items-center space-x-1">
+          <i class="bi bi-star-fill text-yellow-500"></i>
+          <span class="text-yellow-500 font-medium">8.0</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

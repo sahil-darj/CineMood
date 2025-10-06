@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auth Section</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-black text-white">
+    <!-- Auth Section -->
+    <section
+      class="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-red-900/20 to-yellow-900/20"
+    >
+      <div class="max-w-md w-full px-4">
+        <div
+          class="bg-gray-900/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-gray-700"
+        >
+          <!-- Heading -->
+          <div class="text-center mb-8">
+            <h2 id="auth-title" class="text-3xl font-bold text-white mb-2">
+              Welcome Back!
+            </h2>
+            <p id="auth-subtitle" class="text-gray-400">
+              Sign in to your account
+            </p>
+          </div>
+
+          <!-- Form -->
+          <form id="auth-form" class="space-y-6">
+            <!-- Username (only for Sign Up) -->
+            <div id="username-field" class="relative hidden">
+              <i
+                class="bi bi-person text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"
+              ></i>
+              <input
+                id="username-input"
+                type="text"
+                placeholder="Username"
+                class="w-full pl-12 pr-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-600 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20 transition-all"
+              />
+            </div>
+
+            <!-- Email -->
+            <div class="relative">
+              <i
+                class="bi bi-envelope text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"
+              ></i>
+              <input
+                id="email-input"
+                type="email"
+                placeholder="Email"
+                class="w-full pl-12 pr-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-600 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20 transition-all"
+              />
+            </div>
+
+            <!-- Password -->
+            <div class="relative">
+              <i
+                class="bi bi-lock text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"
+              ></i>
+              <input
+                id="password-input"
+                type="password"
+                placeholder="Password"
+                class="w-full pl-12 pr-12 py-3 bg-gray-800 text-white rounded-lg border border-gray-600 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20 transition-all"
+              />
+              <button
+                type="button"
+                id="toggle-password"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+
+            <!-- Confirm Password (only for Sign Up) -->
+            <div id="confirm-password-field" class="relative hidden">
+              <i
+                class="bi bi-lock text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"
+              ></i>
+              <input
+                id="confirm-password-input"
+                type="password"
+                placeholder="Confirm Password"
+                class="w-full pl-12 pr-12 py-3 bg-gray-800 text-white rounded-lg border border-gray-600 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20 transition-all"
+              />
+              <button
+                type="button"
+                id="toggle-confirm-password"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              id="submit-btn"
+              type="submit"
+              class="w-full bg-gradient-to-r from-red-600 to-yellow-600 text-white font-semibold py-3 rounded-lg hover:from-red-700 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            >
+              Sign In
+            </button>
+          </form>
+
+          <!-- Switch Auth Mode -->
+          <div class="text-center mt-6">
+            <p class="text-gray-400">
+              <span id="toggle-text">Don't have an account? </span>
+              <button
+                id="toggle-auth"
+                class="text-yellow-500 hover:text-yellow-400 font-semibold transition-colors"
+              >
+                Sign Up
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JS -->
+    <script>
+      let isLogin = true;
+      const authTitle = document.getElementById("auth-title");
+      const authSubtitle = document.getElementById("auth-subtitle");
+      const usernameField = document.getElementById("username-field");
+      const confirmPasswordField = document.getElementById(
+        "confirm-password-field"
+      );
+      const submitBtn = document.getElementById("submit-btn");
+      const toggleText = document.getElementById("toggle-text");
+      const toggleAuth = document.getElementById("toggle-auth");
+
+      const passwordInput = document.getElementById("password-input");
+      const togglePassword = document.getElementById("toggle-password");
+      const confirmPasswordInput = document.getElementById(
+        "confirm-password-input"
+      );
+      const toggleConfirmPassword = document.getElementById(
+        "toggle-confirm-password"
+      );
+
+      // Toggle Sign In / Sign Up
+      toggleAuth.addEventListener("click", () => {
+        isLogin = !isLogin;
+        if (isLogin) {
+          authTitle.textContent = "Welcome Back!";
+          authSubtitle.textContent = "Sign in to your account";
+          usernameField.classList.add("hidden");
+          confirmPasswordField.classList.add("hidden");
+          submitBtn.textContent = "Sign In";
+          toggleText.textContent = "Don't have an account? ";
+          toggleAuth.textContent = "Sign Up";
+        } else {
+          authTitle.textContent = "Join CineMood";
+          authSubtitle.textContent = "Create your movie journey";
+          usernameField.classList.remove("hidden");
+          confirmPasswordField.classList.remove("hidden");
+          submitBtn.textContent = "Sign Up";
+          toggleText.textContent = "Already have an account? ";
+          toggleAuth.textContent = "Sign In";
+        }
+      });
+
+      // Toggle Password Visibility
+      togglePassword.addEventListener("click", () => {
+        const icon = togglePassword.querySelector("i");
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          icon.classList.replace("bi-eye", "bi-eye-slash");
+        } else {
+          passwordInput.type = "password";
+          icon.classList.replace("bi-eye-slash", "bi-eye");
+        }
+      });
+
+      toggleConfirmPassword.addEventListener("click", () => {
+        const icon = toggleConfirmPassword.querySelector("i");
+        if (confirmPasswordInput.type === "password") {
+          confirmPasswordInput.type = "text";
+          icon.classList.replace("bi-eye", "bi-eye-slash");
+        } else {
+          confirmPasswordInput.type = "password";
+          icon.classList.replace("bi-eye-slash", "bi-eye");
+        }
+      });
+
+      // Form Submit (Login / Signup)
+      const form = document.getElementById("auth-form");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById("username-input")?.value;
+        const email = document.getElementById("email-input").value;
+        const password = document.getElementById("password-input").value;
+        const confirmPassword = document.getElementById(
+          "confirm-password-input"
+        )?.value;
+
+        let endpoint = "/auth/login";
+        let body = { email, password };
+
+        if (!isLogin) {
+          if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+          }
+          endpoint = "/auth/signup";
+          body = { username, email, password };
+        }
+
+        try {
+          const res = await fetch("http://localhost:5000" + endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+
+          const data = await res.json();
+          alert(data.msg || "Success");
+
+          // Store JWT if login
+          if (data.token) {
+            localStorage.setItem("token", data.token);
+            console.log("Logged in:", data);
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Something went wrong!");
+        }
+      });
+    </script>
+  </body>
+</html>

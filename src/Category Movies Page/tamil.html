@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tamil Movies</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Line clamp for movie titles */
+      .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-white">
+    <div class="pt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Title -->
+      <h1 class="text-4xl font-bold text-yellow-400 mb-6">Tamil Movies</h1>
+
+      <!-- Search bar -->
+      <div class="mb-8 relative w-full max-w-md">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search movies..."
+          class="w-full bg-gray-800/50 backdrop-blur-sm text-white placeholder-gray-400 pl-4 pr-4 py-2 rounded-full border border-gray-700 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/20 transition-all duration-300"
+        />
+      </div>
+
+      <!-- Movie grid -->
+      <div
+        id="movieSections"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      ></div>
+    </div>
+
+    <script>
+      const movies = [
+        {
+          id: "1",
+          title: "Coolie",
+          rating: 6.1,
+          year: 2025,
+          genre: "Action / Drama",
+          imageUrl: "/movie web/Tamil/coolie1.jpg",
+        },
+        {
+          id: "2",
+          title: "Vikram",
+          rating: 8.4,
+          year: 2022,
+          genre: "Action / Thriller / Crime",
+          imageUrl: "/movie web/Tamil/vikram.jpeg",
+        },
+        {
+          id: "3",
+          title: "Meiyazhagan",
+          rating: 8.4,
+          year: 2024,
+          genre: "Drama",
+          imageUrl: "/movie web/Tamil/meiyazhagan.jpg",
+        },
+        {
+          id: "4",
+          title: "Maharaja",
+          rating: 8.3,
+          year: 2024,
+          genre: "Action / Drama",
+          imageUrl: "/movie web/Tamil/maharaja.jpg",
+        },
+        {
+          id: "5",
+          title: "Amaran",
+          rating: 7.0,
+          year: 2024,
+          genre: "Action / Drama / Thriller",
+          imageUrl: "/movie web/Tamil/amaran.jpg",
+        },
+        {
+          id: "6",
+          title: "Leo",
+          rating: 7.8,
+          year: 2023,
+          genre: "Action / Thriller / Crime",
+          imageUrl: "/movie web/Tamil/leo.jpg",
+        },
+        {
+          id: "7",
+          title: "I",
+          rating: 7.5,
+          year: 2015,
+          genre: "Action / Thriller / Romance",
+          imageUrl: "/movie web/Tamil/i.jpg",
+        },
+        {
+          id: "8",
+          title: "Tourist Family ",
+          rating: 7.2,
+          year: 2025,
+          genre: "Comedy / Drama / Family",
+          imageUrl: "/movie web/Tamil/tf.jpg",
+        },
+        {
+          id: "9",
+          title: "3 BHK",
+          rating: 7.1,
+          year: 2025,
+          genre: "Family / Drama",
+          imageUrl: "/movie web/Tamil/3bhk.jpg",
+        },
+        {
+          id: "10",
+          title: "Kaithi",
+          rating: 8.2,
+          year: 2019,
+          genre: "Action / Thriller / Crime",
+          imageUrl: "/movie web/Tamil/kaithi.jpg",
+        },
+        {
+          id: "11",
+          title: "Master",
+          rating: 7.8,
+          year: 2021,
+          genre: "Action / Drama / Thriller",
+          imageUrl: "/movie web/Tamil/master.jpg",
+        },
+        {
+          id: "12",
+          title: "Kalki",
+          rating: 7.6,
+          year: 2019,
+          genre: "Action / Thriller / Drama",
+          imageUrl: "/movie web/Tamil/kalki.jpg",
+        },
+        {
+          id: "13",
+          title: "Retro",
+          rating: 7.3,
+          year: 2024,
+          genre: "Action / Thriller / Drama",
+          imageUrl: "/movie web/Tamil/retro.jpg",
+        },
+        {
+          id: "14",
+          title: "Dragon",
+          rating: 7.5,
+          year: 2024,
+          genre: "Action / Fantasy / Adventure",
+          imageUrl: "/movie web/Tamil/dragon.jpg",
+        },
+        {
+          id: "15",
+          title: "Robot",
+          rating: 7.9,
+          year: 2010,
+          genre: "Action / Sci-Fi / Drama",
+          imageUrl: "/movie web/Tamil/robot1.jpg",
+        },
+        {
+          id: "16",
+          title: "2.0 (Robot 2)",
+          rating: 7.3,
+          year: 2018,
+          genre: "Action / Sci-Fi / Thriller",
+          imageUrl: "/movie web/Tamil/robot.jpg",
+        },
+        {
+          id: "17",
+          title: "Maaresan",
+          rating: 7.0,
+          year: 2024,
+          genre: "Drama / Action / Thriller",
+          imageUrl: "/movie web/Tamil/maaresan.jpg",
+        },
+        {
+          id: "18",
+          title: "Vikram Vedha",
+          rating: 8.4,
+          year: 2017,
+          genre: "Action / Thriller / Crime",
+          imageUrl: "/movie web/Tamil/vv.jpg",
+        },
+        {
+          id: "19",
+          title: "Maahan",
+          rating: 7.6,
+          year: 2025,
+          genre: "Action / Thriller / Drama",
+          imageUrl: "/movie web/Tamil/maahan.jpg",
+        },
+        {
+          id: "20",
+          title: "Baashha",
+          rating: 8.0,
+          year: 1995,
+          genre: "Action / Drama",
+          imageUrl: "/movie web/Tamil/baasha.webp",
+        },
+        {
+          id: "22",
+          title: "Ponniyin Selvan 1",
+          rating: 8.2,
+          year: 2022,
+          genre: "Action / Drama / Historical",
+          imageUrl: "/movie web/Tamil/ps1.jpg",
+        },
+        {
+          id: "22",
+          title: "Ponniyin Selvan 2",
+          rating: 8.5,
+          year: 2023,
+          genre: "Action / Drama / Historical",
+          imageUrl: "/movie web/Tamil/ps2.jpg",
+        },
+        {
+          id: "23",
+          title: "Sivaji",
+          rating: 7.5,
+          year: 2007,
+          genre: "Action / Drama / Romance",
+          imageUrl: "/movie web/Tamil/shivaji.jpg",
+        },
+        {
+          id: "24",
+          title: "Thuppakki",
+          rating: 7.8,
+          year: 2012,
+          genre: "Action / Thriller / Drama",
+          imageUrl: "/movie web/Tamil/thuppaki.jpg",
+        },
+        {
+          id: "25",
+          title: "Vedalam",
+          rating: 7.3,
+          year: 2015,
+          genre: "Action / Drama / Thriller",
+          imageUrl: "/movie web/Tamil/vedalam.jpg",
+        },
+
+        {
+          id: "26",
+          title: "Good Bad Ugly",
+          rating: 6.5,
+          year: 2025,
+          genre: "Action / Drama / Thriller",
+          imageUrl: "/movie web/Tamil/gbu.webp",
+        },
+      ];
+
+      function createMovieCard(movie) {
+        return `
+          <div class="group bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-400/20">
+            <img src="${movie.imageUrl}" alt="${
+          movie.title
+        }" class="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="p-4">
+              <h5 class="text-white font-bold text-lg mb-2 line-clamp-1">${
+                movie.title
+              }</h5>
+              <p class="text-gray-400 text-sm mb-1">${movie.year}</p>
+              <p class="text-yellow-400 font-semibold">⭐ ${movie.rating.toFixed(
+                1
+              )}</p>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderMovieSections() {
+        const container = document.getElementById("movieSections");
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+
+        const filteredMovies = movies.filter((m) =>
+          m.title.toLowerCase().includes(query)
+        );
+
+        container.innerHTML = filteredMovies.map(createMovieCard).join("");
+      }
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", renderMovieSections);
+
+      // Initial render
+      renderMovieSections();
+    </script>
+  </body>
+</html>

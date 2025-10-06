@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hollywood Movies</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Line clamp for movie titles */
+      .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-white">
+    <div class="pt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Title -->
+      <h1 class="text-4xl font-bold text-yellow-400 mb-6">Hollywood Movies</h1>
+
+      <!-- Search bar -->
+      <div class="mb-8 relative w-full max-w-md">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search movies..."
+          class="w-full bg-gray-800/50 backdrop-blur-sm text-white placeholder-gray-400 pl-4 pr-4 py-2 rounded-full border border-gray-700 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/20 transition-all duration-300"
+        />
+      </div>
+
+      <!-- Movie grid -->
+      <div
+        id="movieSections"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      ></div>
+    </div>
+
+    <script>
+      const movies = [
+        {
+          id: "1",
+          title: "Civil War",
+
+          rating: 8.3,
+          year: 2016,
+          imageUrl: "/movie web/h/civilwar.jpg",
+          genre: "Action",
+        },
+
+        {
+          id: "1",
+          title: "Jumanji",
+          rating: 7.1,
+          year: 1995,
+          genre: "Adventure / Fantasy / Family",
+          imageUrl: "/movie web/h/jumanji.jpg",
+        },
+        {
+          id: "2",
+          title: "Jumanji: Welcome to the Jungle",
+          rating: 6.9,
+          year: 2017,
+          genre: "Action / Adventure / Comedy",
+          imageUrl: "/movie web/h/jumaji 2.jpg",
+        },
+        {
+          id: "3",
+          title: "The Conjuring",
+          rating: 7.5,
+          year: 2013,
+          genre: "Horror / Mystery / Thriller",
+          imageUrl: "/movie web/h/horro2.jpg",
+        },
+        {
+          id: "4",
+          title: "Barbie",
+          rating: 6.8,
+          year: 2023,
+          genre: "Adventure / Comedy / Fantasy",
+          imageUrl: "/movie web/h/barbie.jpg",
+        },
+        {
+          id: "5",
+          title: "Oppenheimer",
+          rating: 8.3,
+          year: 2023,
+          genre: "Biography / Drama / History",
+          imageUrl: "/movie web/h/open.jpg",
+        },
+        {
+          id: "6",
+          title: "Avengers: Endgame",
+          rating: 8.4,
+          year: 2019,
+          genre: "Action / Adventure / Sci-Fi",
+          imageUrl: "/movie web/h/endgame.jpg",
+        },
+        {
+          id: "7",
+          title: "Deadpool & Wolverine",
+          rating: 8.2,
+          year: 2024,
+          genre: "Action / Comedy / Sci-Fi",
+          imageUrl: "/movie web/h/d&w.jpg",
+        },
+        {
+          id: "8",
+          title: "Venom",
+          rating: 6.6,
+          year: 2018,
+          genre: "Action / Sci-Fi / Thriller",
+          imageUrl: "/movie web/h/venom.jpg",
+        },
+        {
+          id: "9",
+          title: "Mission: Impossible",
+          rating: 7.1,
+          year: 1996,
+          genre: "Action / Adventure / Thriller",
+          imageUrl: "/movie web/h/mission1.jpg",
+        },
+        {
+          id: "10",
+          title: "Mission: Impossible II",
+          rating: 6.1,
+          year: 2000,
+          genre: "Action / Adventure / Thriller",
+          imageUrl: "/movie web/h/mission2.jpg",
+        },
+        {
+          id: "11",
+          title: "Mission: Impossible III",
+          rating: 6.9,
+          year: 2006,
+          genre: "Action / Adventure / Thriller",
+          imageUrl: "/movie web/h/mission3.jpg",
+        },
+        {
+          id: "12",
+          title: "Mission: Impossible – Ghost Protocol",
+          rating: 7.4,
+          year: 2011,
+          genre: "Action / Adventure / Thriller",
+          imageUrl: "/movie web/h/mission4.jpg",
+        },
+        {
+          id: "13",
+          title: "Mission: Impossible – Rogue Nation",
+          rating: 7.4,
+          year: 2015,
+          genre: "Action / Adventure / Thriller",
+          imageUrl: "/movie web/h/mission5.jpg",
+        },
+        {
+          id: "14",
+          title: "Mission: Impossible – Fallout",
+          rating: 7.7,
+          year: 2018,
+          genre: "Action / Adventure / Thriller",
+          imageUrl: "/movie web/h/mission6.jpg",
+        },
+
+        {
+          id: "23",
+          title: "Mission: Impossible – Dead Reckoning Part One",
+          rating: 7.7,
+          year: 2023,
+          genre: "Action / Adventure / Thriller",
+          imageUrl: "/movie web/h/mission7.jpg",
+        },
+        {
+          id: "24",
+          title: "Mission: Impossible – Dead Reckoning Part Two",
+          rating: 8.0,
+          year: 2025,
+          genre: "Action / Adventure / Thriller",
+          imageUrl: "/movie web/h/mission8.jpg",
+        },
+        {
+          id: "15",
+          title: "Aladdin (1992)",
+          rating: 8.0,
+          year: 1992,
+          genre: "Animation / Adventure / Comedy",
+          imageUrl: "/movie web/h/aladdin1.jpg",
+        },
+        {
+          id: "16",
+          title: "Aladdin (Live Action)",
+          rating: 6.9,
+          year: 2019,
+          genre: "Adventure / Family / Fantasy",
+          imageUrl: "/movie web/h/aladdin.jpg",
+        },
+        {
+          id: "17",
+          title: "Pirates of the Caribbean: The Curse of the Black Pearl",
+          rating: 8.1,
+          year: 2003,
+          genre: "Action / Adventure / Fantasy",
+          imageUrl: "/movie web/h/pirates1.jpg",
+        },
+        {
+          id: "18",
+          title: "Pirates of the Caribbean: Dead Man's Chest",
+          rating: 7.4,
+          year: 2006,
+          genre: "Action / Adventure / Fantasy",
+          imageUrl: "/movie web/h/pirates2.jpg",
+        },
+        {
+          id: "19",
+          title: "Pirates of the Caribbean: At World's End",
+          rating: 7.1,
+          year: 2007,
+          genre: "Action / Adventure / Fantasy",
+          imageUrl: "/movie web/h/pirates3.jpg",
+        },
+        {
+          id: "20",
+          title: "Pirates of the Caribbean: On Stranger Tides",
+          rating: 6.6,
+          year: 2011,
+          genre: "Action / Adventure / Fantasy",
+          imageUrl: "/movie web/h/poc.jpg",
+        },
+        {
+          id: "21",
+          title: "Pirates of the Caribbean: Dead Men Tell No Tales",
+          rating: 6.5,
+          year: 2017,
+          genre: "Action / Adventure / Fantasy",
+          imageUrl: "/movie web/h/pirates5.jpg",
+        },
+        {
+          id: "22",
+          title: "The Misfits",
+          rating: 4.2,
+          year: 2021,
+          genre: "Action / Adventure / Crime",
+          imageUrl: "/movie web/h/h1.jpg",
+        },
+
+        {
+          id: "28",
+          title: "Inception",
+          rating: 8.8,
+          year: 2010,
+          genre: "Action / Sci-Fi / Mystery",
+          imageUrl: "/movie web/h/inception.jpg",
+        },
+        {
+          id: "29",
+          title: "Interstellar",
+          rating: 8.6,
+          year: 2014,
+          genre: "Adventure / Drama / Sci-Fi",
+          imageUrl: "/movie web/h/interstellar.jpg",
+        },
+        {
+          id: "30",
+          title: "Avatar: The Way of Water",
+          rating: 7.6,
+          year: 2022,
+          genre: "Action / Adventure / Fantasy",
+          imageUrl: "/movie web/h/avatar2.jpg",
+        },
+        {
+          id: "31",
+          title: "The Batman",
+          rating: 7.8,
+          year: 2022,
+          genre: "Action / Crime / Drama",
+          imageUrl: "/movie web/h/batman.jpg",
+        },
+        {
+          id: "32",
+          title: "Joker",
+          rating: 8.4,
+          year: 2019,
+          genre: "Crime / Drama / Thriller",
+          imageUrl: "/movie web/h/joker.jpg",
+        },
+      ];
+
+      function createMovieCard(movie) {
+        return `
+                <div class="group bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-400/20">
+                  <img src="${movie.imageUrl}" alt="${
+          movie.title
+        }" class="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-110">
+                  <div class="p-4">
+                    <h5 class="text-white font-bold text-lg mb-2 line-clamp-1">${
+                      movie.title
+                    }</h5>
+                    <p class="text-gray-400 text-sm mb-1">${movie.year}</p>
+                    <p class="text-yellow-400 font-semibold">⭐ ${movie.rating.toFixed(
+                      1
+                    )}</p>
+                  </div>
+                </div>
+              `;
+      }
+
+      function renderMovieSections() {
+        const container = document.getElementById("movieSections");
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+
+        const filteredMovies = movies.filter((m) =>
+          m.title.toLowerCase().includes(query)
+        );
+
+        container.innerHTML = filteredMovies.map(createMovieCard).join("");
+      }
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", renderMovieSections);
+
+      // Initial render
+      renderMovieSections();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Underrated Movies</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background-color: #121212;
+        color: white;
+      }
+      .section-title {
+        color: #facc15;
+        font-weight: bold;
+        text-align: center;
+        margin: 40px 0 30px;
+      }
+      .movie-cardd {
+        background-color: #111827;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+      }
+      .movie-cardd:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(251, 207, 29, 0.13),
+          0 0 25px rgba(236, 72, 153, 0.2);
+      }
+      .movie-cardd img {
+        height: 300px;
+        width: 100%;
+        object-fit: cover;
+      }
+      @media (max-width: 768px) {
+        .movie-cardd img {
+          height: 250px;
+        }
+      }
+      @media (max-width: 576px) {
+        .movie-cardd img {
+          height: 220px;
+        }
+      }
+      button {
+        transition: all 0.3s ease;
+      }
+      button:hover {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2 class="section-title">🎬 Underrated Movies</h2>
+
+      <!-- Responsive Movie Grid -->
+       <section id="Underrated Movies">
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="movie-cardd">
+            <img
+              src="movie web/b/lunchbox.jpeg"
+              alt="Lunchbox"
+              class="w-100 h-96 object-cover object-top"
+            />
+            <div class="p-3">
+              <h5 class="fw-bold">Lunchbox</h5>
+              <p class="text-warning mb-1">⭐ 9.2</p>
+              <p class="text-white-50">2013 • Drama</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="movie-cardd">
+            <img
+              src="movie web/b/parking.jpeg"
+              alt="Parking"
+              class="w-100 h-96 object-cover object-top"
+            />
+            <div class="p-3">
+              <h5 class="fw-bold">Parking</h5>
+              <p class="text-warning mb-1">⭐ 8.9</p>
+              <p class="text-white-50">2023 • Comedy / Drama</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="movie-cardd">
+            <img
+              src="movie web/Malayalam/neru.jpg"
+              alt="Neru"
+              class="w-100 h-96 object-cover object-top"
+            />
+            <div class="p-3">
+              <h5 class="fw-bold">Neru</h5>
+              <p class="text-warning mb-1">⭐ 8.1</p>
+              <p class="text-white-50">2023 • Suspense / Thriller</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="movie-cardd">
+            <img
+              src="movie web/Telugu/v.jpg"
+              alt="V"
+              class="w-100 h-96 object-cover object-top"
+            />
+            <div class="p-3">
+              <h5 class="fw-bold">V</h5>
+              <p class="text-warning mb-1">⭐ 8.2</p>
+              <p class="text-white-50">2020 • Action / Thriller</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button -->
+
+      <div class="col-span-full text-center mt-6">
+        <a href="src/underrated2.html" target="_blank">
+          <button
+            class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full transition"
+          >
+          Explore More With Your Taste
+          </button>
+        </a>
+      </div>
+    
+    </div>
+  </body>
+</html>

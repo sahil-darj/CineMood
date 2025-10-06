@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero Section with Search</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-up {
+        animation: fadeInUp 1s ease-out forwards;
+      }
+      .animate-fade-in-up-delay {
+        animation: fadeInUp 1s ease-out forwards;
+        animation-delay: 0.5s;
+      }
+      .animate-fade-in-up-delay-2 {
+        animation: fadeInUp 1s ease-out forwards;
+        animation-delay: 1s;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+      }
+
+      /* Search results box */
+      .results-container {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        z-index: 50;
+        color: white;
+        max-height: 300px;
+        overflow-y: auto;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      }
+      .result-item {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .result-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .no-result {
+        padding: 0.75rem 1rem;
+        color: #facc15;
+      }
+    </style>
+  </head>
+  <body class="bg-black">
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="relative h-screen flex items-center justify-center"
+    >
+      <!-- Background -->
+      <div class="absolute inset-0">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90 opacity-100"
+        ></div>
+        <div
+          class="w-full h-full bg-cover bg-center scale-105 opacity-80"
+          style="background-image: url('images/background.jpg')"
+        ></div>
+      </div>
+
+      <!-- Content -->
+      <div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+        <h1
+          class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up text-shadow"
+        >
+          Discover, Rate & Review Movies
+        </h1>
+        <p
+          class="text-xl md:text-2xl mb-8 text-gray-200 animate-fade-in-up-delay text-shadow"
+        >
+          Your personalized movie guide by mood and genre
+        </p>
+
+        <!-- Search Bar -->
+        <div class="relative max-w-md mx-auto animate-fade-in-up-delay-2">
+          <input
+            id="movie-search"
+            type="text"
+            placeholder="Search for movies..."
+            class="w-full px-6 py-4 pl-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+          />
+          <i
+            class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
+          ></i>
+
+          <!-- Results -->
+          <div id="search-results" class="results-container hidden"></div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

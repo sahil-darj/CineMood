@@ -1,0 +1,605 @@
+<script>
+  const movies: Movie[] = [
+  {
+    id: '1',
+    title: 'Tumbbad',
+    rating: 8.2,
+    year: 2018,
+    imageUrl: 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Suspense',
+    language: 'Hindi',
+    tags: ['Hidden Gems', 'Cult Classics']
+  },
+  {
+    id: '2',
+    title: 'Andhadhun',
+    rating: 8.3,
+    year: 2018,
+    imageUrl: 'https://images.pexels.com/photos/7991225/pexels-photo-7991225.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Suspense',
+    language: 'Hindi',
+    tags: ['Top Rated']
+  },
+  {
+    id: '3',
+    title: 'Newton',
+    rating: 7.8,
+    year: 2017,
+    imageUrl: 'https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Comedy',
+    language: 'Hindi',
+    tags: ['Hidden Gems', 'Indie Hits']
+  },
+  {
+    id: '4',
+    title: 'The Lunchbox',
+    rating: 7.8,
+    year: 2013,
+    imageUrl: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Hindi',
+    tags: ['Top Rated']
+  },
+  {
+    id: '5',
+    title: 'Masaan',
+    rating: 8.1,
+    year: 2015,
+    imageUrl: 'https://images.pexels.com/photos/3255761/pexels-photo-3255761.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Hindi',
+    tags: ['Hidden Gems', 'Indie Hits']
+  },
+  {
+    id: '6',
+    title: 'Kai Po Che',
+    rating: 7.8,
+    year: 2013,
+    imageUrl: 'https://images.pexels.com/photos/3894378/pexels-photo-3894378.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Hindi',
+    tags: ['Top Rated']
+  },
+  {
+    id: '7',
+    title: 'Gangs of Wasseypur',
+    rating: 8.2,
+    year: 2012,
+    imageUrl: 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Action',
+    language: 'Hindi',
+    tags: ['Cult Classics', 'Top Rated']
+  },
+  {
+    id: '8',
+    title: 'Ship of Theseus',
+    rating: 8.1,
+    year: 2012,
+    imageUrl: 'https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Classics',
+    language: 'Hindi',
+    tags: ['Hidden Gems', 'Indie Hits']
+  },
+  {
+    id: '9',
+    title: 'Court',
+    rating: 8.0,
+    year: 2014,
+    imageUrl: 'https://images.pexels.com/photos/8111848/pexels-photo-8111848.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Classics',
+    language: 'Marathi',
+    tags: ['Hidden Gems', 'Indie Hits']
+  },
+  {
+    id: '10',
+    title: 'Super Deluxe',
+    rating: 8.3,
+    year: 2019,
+    imageUrl: 'https://images.pexels.com/photos/7234390/pexels-photo-7234390.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Suspense',
+    language: 'Tamil',
+    tags: ['Hidden Gems', 'Cult Classics']
+  },
+  {
+    id: '11',
+    title: 'Kumbalangi Nights',
+    rating: 8.5,
+    year: 2019,
+    imageUrl: 'https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Malayalam',
+    tags: ['Top Rated']
+  },
+  {
+    id: '12',
+    title: 'Drishyam',
+    rating: 8.3,
+    year: 2013,
+    imageUrl: 'https://images.pexels.com/photos/2403251/pexels-photo-2403251.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Suspense',
+    language: 'Malayalam',
+    tags: ['Top Rated', 'Highest Grossers']
+  },
+  {
+    id: '13',
+    title: 'Lucia',
+    rating: 8.3,
+    year: 2013,
+    imageUrl: 'https://images.pexels.com/photos/3721941/pexels-photo-3721941.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Suspense',
+    language: 'Others',
+    tags: ['Hidden Gems', 'Indie Hits']
+  },
+  {
+    id: '14',
+    title: 'Sairat',
+    rating: 8.1,
+    year: 2016,
+    imageUrl: 'https://images.pexels.com/photos/3894381/pexels-photo-3894381.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Marathi',
+    tags: ['Highest Grossers']
+  },
+  {
+    id: '15',
+    title: 'Apu Trilogy',
+    rating: 8.6,
+    year: 1959,
+    imageUrl: 'https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Classics',
+    language: 'Bengali',
+    tags: ['Cult Classics', 'Top Rated']
+  },
+  {
+    id: '16',
+    title: 'Harishchandrachi Factory',
+    rating: 8.0,
+    year: 2009,
+    imageUrl: 'https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Biopic',
+    language: 'Marathi',
+    tags: ['Hidden Gems']
+  },
+  {
+    id: '17',
+    title: 'The Disciple',
+    rating: 7.5,
+    year: 2020,
+    imageUrl: 'https://images.pexels.com/photos/3971985/pexels-photo-3971985.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Classics',
+    language: 'Marathi',
+    tags: ['New Releases', 'Indie Hits']
+  },
+  {
+    id: '18',
+    title: 'Jalsaghar',
+    rating: 8.0,
+    year: 1958,
+    imageUrl: 'https://images.pexels.com/photos/19667636/pexels-photo-19667636.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Classics',
+    language: 'Bengali',
+    tags: ['Cult Classics']
+  },
+  {
+    id: '19',
+    title: 'Aligarh',
+    rating: 7.8,
+    year: 2015,
+    imageUrl: 'https://images.pexels.com/photos/2240763/pexels-photo-2240763.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Biopic',
+    language: 'Hindi',
+    tags: ['Hidden Gems']
+  },
+  {
+    id: '20',
+    title: 'Shahid',
+    rating: 8.2,
+    year: 2012,
+    imageUrl: 'https://images.pexels.com/photos/7989591/pexels-photo-7989591.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Biopic',
+    language: 'Hindi',
+    tags: ['Hidden Gems', 'Indie Hits']
+  },
+  {
+    id: '21',
+    title: 'Peepli Live',
+    rating: 7.3,
+    year: 2010,
+    imageUrl: 'https://images.pexels.com/photos/2382681/pexels-photo-2382681.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Comedy',
+    language: 'Hindi',
+    tags: ['Flop but Loved', 'Indie Hits']
+  },
+  {
+    id: '22',
+    title: 'Trapped',
+    rating: 7.5,
+    year: 2016,
+    imageUrl: 'https://images.pexels.com/photos/3894157/pexels-photo-3894157.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Suspense',
+    language: 'Hindi',
+    tags: ['Hidden Gems']
+  },
+  {
+    id: '23',
+    title: 'Jallikattu',
+    rating: 8.0,
+    year: 2019,
+    imageUrl: 'https://images.pexels.com/photos/4666757/pexels-photo-4666757.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Action',
+    language: 'Malayalam',
+    tags: ['New Releases', 'Cult Classics']
+  },
+  {
+    id: '24',
+    title: 'Kaaka Muttai',
+    rating: 8.2,
+    year: 2014,
+    imageUrl: 'https://images.pexels.com/photos/3894381/pexels-photo-3894381.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Comedy',
+    language: 'Tamil',
+    tags: ['Hidden Gems']
+  },
+  {
+    id: '25',
+    title: 'Fandry',
+    rating: 8.0,
+    year: 2013,
+    imageUrl: 'https://images.pexels.com/photos/3894157/pexels-photo-3894157.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Marathi',
+    tags: ['Hidden Gems', 'Indie Hits']
+  },
+  {
+    id: '26',
+    title: 'Ayyappanum Koshiyum',
+    rating: 8.2,
+    year: 2020,
+    imageUrl: 'https://images.pexels.com/photos/2403251/pexels-photo-2403251.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Action',
+    language: 'Malayalam',
+    tags: ['New Releases']
+  },
+  {
+    id: '27',
+    title: 'Angamaly Diaries',
+    rating: 8.1,
+    year: 2017,
+    imageUrl: 'https://images.pexels.com/photos/3894378/pexels-photo-3894378.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Action',
+    language: 'Malayalam',
+    tags: ['Hidden Gems']
+  },
+  {
+    id: '28',
+    title: 'Vikram Vedha',
+    rating: 8.2,
+    year: 2017,
+    imageUrl: 'https://images.pexels.com/photos/7234390/pexels-photo-7234390.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Action',
+    language: 'Tamil',
+    tags: ['Top Rated']
+  },
+  {
+    id: '29',
+    title: 'The Man from Earth',
+    rating: 7.8,
+    year: 2007,
+    imageUrl: 'https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Classics',
+    language: 'Hollywood',
+    tags: ['Hidden Gems', 'Cult Classics']
+  },
+  {
+    id: '30',
+    title: 'Primer',
+    rating: 6.9,
+    year: 2004,
+    imageUrl: 'https://images.pexels.com/photos/3721941/pexels-photo-3721941.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Suspense',
+    language: 'Hollywood',
+    tags: ['Cult Classics', 'Indie Hits']
+  },
+  {
+    id: '31',
+    title: 'Moon',
+    rating: 7.8,
+    year: 2009,
+    imageUrl: 'https://images.pexels.com/photos/3255761/pexels-photo-3255761.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Classics',
+    language: 'Hollywood',
+    tags: ['Hidden Gems']
+  },
+  {
+    id: '32',
+    title: 'Hunt for the Wilderpeople',
+    rating: 7.8,
+    year: 2016,
+    imageUrl: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Comedy',
+    language: 'Hollywood',
+    tags: ['Hidden Gems']
+  },
+  {
+    id: '33',
+    title: 'In Bruges',
+    rating: 7.9,
+    year: 2008,
+    imageUrl: 'https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Comedy',
+    language: 'Hollywood',
+    tags: ['Cult Classics']
+  },
+  {
+    id: '34',
+    title: 'Short Term 12',
+    rating: 7.9,
+    year: 2013,
+    imageUrl: 'https://images.pexels.com/photos/3255761/pexels-photo-3255761.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Hollywood',
+    tags: ['Hidden Gems', 'Indie Hits']
+  },
+  {
+    id: '35',
+    title: 'Blue Ruin',
+    rating: 7.1,
+    year: 2013,
+    imageUrl: 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Action',
+    language: 'Hollywood',
+    tags: ['Indie Hits']
+  },
+  {
+    id: '36',
+    title: 'Vada Chennai',
+    rating: 8.4,
+    year: 2018,
+    imageUrl: 'https://images.pexels.com/photos/7234390/pexels-photo-7234390.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Action',
+    language: 'Tamil',
+    tags: ['Top Rated']
+  },
+  {
+    id: '37',
+    title: 'Pariyerum Perumal',
+    rating: 8.6,
+    year: 2018,
+    imageUrl: 'https://images.pexels.com/photos/3894381/pexels-photo-3894381.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Tamil',
+    tags: ['Hidden Gems', 'Top Rated']
+  },
+  {
+    id: '38',
+    title: 'Lucia',
+    rating: 7.5,
+    year: 2017,
+    imageUrl: 'https://images.pexels.com/photos/2240763/pexels-photo-2240763.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Comedy',
+    language: 'Gujarati',
+    tags: ['Hidden Gems']
+  },
+  {
+    id: '39',
+    title: 'Killa',
+    rating: 7.5,
+    year: 2014,
+    imageUrl: 'https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Marathi',
+    tags: ['Hidden Gems', 'Indie Hits']
+  },
+  {
+    id: '40',
+    title: 'Manjhi',
+    rating: 7.4,
+    year: 2015,
+    imageUrl: 'https://images.pexels.com/photos/7989591/pexels-photo-7989591.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Biopic',
+    language: 'Hindi',
+    tags: ['Flop but Loved']
+  },
+  {
+    id: '41',
+    title: 'Neerja',
+    rating: 7.6,
+    year: 2016,
+    imageUrl: 'https://images.pexels.com/photos/2240763/pexels-photo-2240763.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Biopic',
+    language: 'Hindi',
+    tags: ['Top Rated', 'Highest Grossers']
+  },
+  {
+    id: '42',
+    title: 'Rang De Basanti',
+    rating: 8.1,
+    year: 2006,
+    imageUrl: 'https://images.pexels.com/photos/3894378/pexels-photo-3894378.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Biopic',
+    language: 'Hindi',
+    tags: ['Cult Classics', 'Highest Grossers']
+  },
+  {
+    id: '43',
+    title: 'Anbe Sivam',
+    rating: 8.5,
+    year: 2003,
+    imageUrl: 'https://images.pexels.com/photos/3894381/pexels-photo-3894381.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Comedy',
+    language: 'Tamil',
+    tags: ['Flop but Loved', 'Cult Classics']
+  },
+  {
+    id: '44',
+    title: 'Taare Zameen Par',
+    rating: 8.3,
+    year: 2007,
+    imageUrl: 'https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Hindi',
+    tags: ['Top Rated', 'Highest Grossers']
+  },
+  {
+    id: '45',
+    title: 'Charulata',
+    rating: 8.2,
+    year: 1964,
+    imageUrl: 'https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Classics',
+    language: 'Bengali',
+    tags: ['Cult Classics']
+  },
+  {
+    id: '46',
+    title: 'Arth',
+    rating: 7.8,
+    year: 1982,
+    imageUrl: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Hindi',
+    tags: ['Cult Classics']
+  },
+  {
+    id: '47',
+    title: 'Black Friday',
+    rating: 8.1,
+    year: 2004,
+    imageUrl: 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Action',
+    language: 'Hindi',
+    tags: ['Cult Classics']
+  },
+  {
+    id: '48',
+    title: 'Udaan',
+    rating: 8.1,
+    year: 2010,
+    imageUrl: 'https://images.pexels.com/photos/3894157/pexels-photo-3894157.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Hindi',
+    tags: ['Hidden Gems', 'Indie Hits']
+  },
+  {
+    id: '49',
+    title: 'Maheshinte Prathikaaram',
+    rating: 8.3,
+    year: 2016,
+    imageUrl: 'https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Comedy',
+    language: 'Malayalam',
+    tags: ['Top Rated']
+  },
+  {
+    id: '50',
+    title: 'Minnal Murali',
+    rating: 7.8,
+    year: 2021,
+    imageUrl: 'https://images.pexels.com/photos/4666757/pexels-photo-4666757.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Action',
+    language: 'Malayalam',
+    tags: ['New Releases']
+  },
+  {
+    id: '51',
+    title: 'Bangalore Days',
+    rating: 8.3,
+    year: 2014,
+    imageUrl: 'https://images.pexels.com/photos/3894378/pexels-photo-3894378.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Comedy',
+    language: 'Malayalam',
+    tags: ['Top Rated', 'Highest Grossers']
+  },
+  {
+    id: '52',
+    title: 'Aaranya Kaandam',
+    rating: 8.5,
+    year: 2011,
+    imageUrl: 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Action',
+    language: 'Tamil',
+    tags: ['Cult Classics', 'Hidden Gems']
+  },
+  {
+    id: '53',
+    title: 'Attakathi',
+    rating: 7.4,
+    year: 2012,
+    imageUrl: 'https://images.pexels.com/photos/3894381/pexels-photo-3894381.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Comedy',
+    language: 'Tamil',
+    tags: ['Hidden Gems']
+  },
+  {
+    id: '54',
+    title: 'Jigarthanda',
+    rating: 8.2,
+    year: 2014,
+    imageUrl: 'https://images.pexels.com/photos/7234390/pexels-photo-7234390.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Action',
+    language: 'Tamil',
+    tags: ['Hidden Gems']
+  },
+  {
+    id: '55',
+    title: 'Thithi',
+    rating: 8.2,
+    year: 2015,
+    imageUrl: 'https://images.pexels.com/photos/2382681/pexels-photo-2382681.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Comedy',
+    language: 'Others',
+    tags: ['Hidden Gems', 'Indie Hits']
+  },
+  {
+    id: '56',
+    title: 'Paava Kadhaigal',
+    rating: 7.6,
+    year: 2020,
+    imageUrl: 'https://images.pexels.com/photos/3894157/pexels-photo-3894157.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Tamil',
+    tags: ['New Releases']
+  },
+  {
+    id: '57',
+    title: 'The Great Indian Kitchen',
+    rating: 8.3,
+    year: 2021,
+    imageUrl: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Malayalam',
+    tags: ['New Releases', 'Top Rated']
+  },
+  {
+    id: '58',
+    title: 'Mahanati',
+    rating: 8.4,
+    year: 2018,
+    imageUrl: 'https://images.pexels.com/photos/2240763/pexels-photo-2240763.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Biopic',
+    language: 'Telugu',
+    tags: ['Top Rated', 'Highest Grossers']
+  },
+  {
+    id: '59',
+    title: 'Arjun Reddy',
+    rating: 8.1,
+    year: 2017,
+    imageUrl: 'https://images.pexels.com/photos/3894157/pexels-photo-3894157.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Telugu',
+    tags: ['Cult Classics', 'Highest Grossers']
+  },
+  {
+    id: '60',
+    title: 'C/o Kancharapalem',
+    rating: 8.6,
+    year: 2018,
+    imageUrl: 'https://images.pexels.com/photos/3894381/pexels-photo-3894381.jpeg?auto=compress&cs=tinysrgb&w=600',
+    genre: 'Sad',
+    language: 'Telugu',
+    tags: ['Hidden Gems', 'Indie Hits']
+  }
+];
+
+  </script>

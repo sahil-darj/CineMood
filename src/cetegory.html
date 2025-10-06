@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CineMood</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <style>
+      /* Stars */
+      .stars {
+        display: flex;
+        gap: 2px;
+        margin-top: 5px;
+      }
+      .star {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        background-color: #444;
+        clip-path: polygon(
+          50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%
+        );
+      }
+      .star.filled {
+        background-color: #facc15;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <!-- Categories Section -->
+    <section id="Explore by Cinema" class="py-16 px-4">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">
+        Explore by <span class="text-yellow-500">Cinema</span>
+      </h2>
+
+      <!-- Tabs -->
+      <div class="flex justify-center gap-4 mb-10 flex-wrap">
+        <button
+          class="tab-btn px-4 py-2 rounded-full bg-gray-800 hover:bg-yellow-500 transition-colors"
+          data-tab="bollywood"
+        >
+          🇮🇳 Bollywood
+        </button>
+        <button
+          class="tab-btn px-4 py-2 rounded-full bg-gray-800 hover:bg-yellow-500 transition-colors"
+          data-tab="hollywood"
+        >
+          🇺🇸 Hollywood
+        </button>
+        <button
+          class="tab-btn px-4 py-2 rounded-full bg-gray-800 hover:bg-yellow-500 transition-colors"
+          data-tab="tollywood"
+        >
+          Tollywood
+        </button>
+        <button
+          class="tab-btn px-4 py-2 rounded-full bg-gray-800 hover:bg-yellow-500 transition-colors"
+          data-tab="mollywood"
+        >
+          Mollywood
+        </button>
+
+        <button
+          class="tab-btn px-4 py-2 rounded-full bg-gray-800 hover:bg-yellow-500 transition-colors"
+          data-tab="dollywood"
+        >
+          Dollywood
+        </button>
+
+        <button
+          class="tab-btn px-4 py-2 rounded-full bg-gray-800 hover:bg-yellow-500 transition-colors"
+          data-tab="kollywood"
+        >
+          Kollywood
+        </button>
+
+        <button
+          class="tab-btn px-4 py-2 rounded-full bg-gray-800 hover:bg-yellow-500 transition-colors"
+          data-tab="sandalwood"
+        >
+          Sandalwood
+        </button>
+      </div>
+
+      <!-- Tab Contents -->
+      <div class="space-y-8">
+        <!-- Bollywood -->
+
+        <div
+          id="bollywood"
+          class="tab-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/b/war.jpg"
+              alt="war2"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">War 2 (2025)</h3>
+              <p class="text-yellow-500">⭐ 8.8</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/b/tbob.jpg"
+              alt="tbob"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">The Bads Of Bollywood (2025)</h3>
+              <p class="text-yellow-500">⭐ 8.9</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/b/dd.jpg"
+              alt="RRR"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Dhoom Dhaam (2025)</h3>
+              <p class="text-yellow-500">⭐ 8.1</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="/images/gk.jpg"
+              alt="Gangubai"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Gangubai Kathiawadi (2022)</h3>
+              <p class="text-yellow-500">⭐ 7.8</p>
+            </div>
+          </div>
+
+          <div class="col-span-full text-center mt-6">
+            <a href="src/Category Movies Page/bollywood.html" target="_blank">
+              <button
+                class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full transition"
+              >
+                See more
+              </button>
+            </a>
+          </div>
+        </div>
+
+        <!--<div
+          class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition hidden extra-bollywood"
+        >
+          <img src="movie web/b/fighter.jpg" class="w-full h-96 object-cover" />
+          <div class="p-4">
+            <h3 class="font-bold text-lg">Fighter (2023)</h3>
+            <p class="text-yellow-500">⭐ 7.2</p>
+          </div>
+        </div>
+
+        <div
+          class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition hidden extra-bollywood"
+        >
+          <img
+            src="movie web/b/showtime.jpg"
+            class="w-full h-96 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="font-bold text-lg">Show Time (2024)</h3>
+            <p class="text-yellow-500">⭐ 8.2</p>
+          </div>
+        </div>
+
+        <div
+          class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition hidden extra-bollywood"
+        >
+          <img src="movie web/b/dhoni.jpg" class="w-full h-96 object-cover" />
+          <div class="p-4">
+            <h3 class="font-bold text-lg">MS Dhoni (2015)</h3>
+            <p class="text-yellow-500">⭐ 9.1</p>
+          </div>
+        </div>
+
+        <div
+          class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition hidden extra-bollywood"
+        >
+          <img src="movie web/b/tnm.jpg" class="w-full h-96 object-cover" />
+          <div class="p-4">
+            <h3 class="font-bold text-lg">The Night Manager (2023)</h3>
+            <p class="text-yellow-500">⭐7.2</p>
+          </div>
+        </div>
+
+        <div
+          class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition hidden extra-bollywood"
+        >
+          <img
+            src="movie web/b/sikandar.jpg"
+            class="w-full h-96 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="font-bold text-lg">Sikandar (2025)</h3>
+            <p class="text-yellow-500">⭐6</p>
+          </div>
+        </div>
+      </div>
+      
+
+        <div
+          class="extra-movies hidden col-span-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="movie web/b/kgf.jpg"
+              alt="kgf"
+              class="w-full h- object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">KGF 3 (2026)</h3>
+              <p class="text-yellow-500">⭐ 9.0</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="movie web/b/sr.jpg"
+              alt="SR"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Salaar Returns (2026)</h3>
+              <p class="text-yellow-500">⭐ 8.7</p>
+            </div>
+          </div>
+          <div
+            class="extra-movies hidden col-span-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+          >
+            <div
+              class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+            >
+              <img
+                src="movie web/b/kgf.jpg"
+                alt="kgf"
+                class="w-full h-96 object-cover object-top"
+              />
+              <div class="p-4">
+                <h3 class="font-bold text-lg">KGF 3 (2026)</h3>
+                <p class="text-yellow-500">⭐ 9.0</p>
+              </div>
+            </div>
+
+            <div
+              class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+            >
+              <img
+                src="movie web/b/sr.jpg"
+                alt="SR"
+                class="w-full h-96 object-cover object-top"
+              />
+              <div class="p-4">
+                <h3 class="font-bold text-lg">Salaar Returns (2026)</h3>
+                <p class="text-yellow-500">⭐ 8.7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      -->
+        <!-- Hollywood -->
+        <div
+          id="hollywood"
+          class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/h/aladdin.jpg"
+              alt="avengers endgame "
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Aladdin (2019)</h3>
+              <p class="text-yellow-500">⭐ 8.5</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="movie web/h/mi8.jpg"
+              alt="mission impossible final reckoning "
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">
+                Mission Impossible: Final Reckoning (2025)
+              </h3>
+              <p class="text-yellow-500">⭐ 8.9</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="/images/open.jpg"
+              alt="Oppenheimer"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Oppenheimer (2023)</h3>
+              <p class="text-yellow-500">⭐ 8.6</p>
+            </div>
+          </div>
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="movie web/h/endgame.jpg"
+              alt="avengers endgame "
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Avengers Endgame (2019)</h3>
+              <p class="text-yellow-500">⭐9.2</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition hidden extra-hollywood"
+          >
+            <img
+              src="/images/open.jpg"
+              alt="Oppenheimer"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Oppenheimer (2023)</h3>
+              <p class="text-yellow-500">⭐ 8.6</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition hidden extra-hollywood"
+          >
+            <img
+              src="movie web/h/aladdin.jpg"
+              alt="avengers endgame "
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Aladdin (2019)</h3>
+              <p class="text-yellow-500">⭐ 8.5</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition hidden extra-hollywood"
+          >
+            <img
+              src="movie web/h/poc.jpg"
+              alt="poc "
+              class="w-full h-96 object-top object-cover"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Pirates Of The Caribbean (2019)</h3>
+              <p class="text-yellow-500">⭐9.2</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition hidden extra-hollywood"
+          >
+            <img
+              src="movie web/h/endgame.jpg"
+              alt="avengers endgame "
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Avengers Endgame (2019)</h3>
+              <p class="text-yellow-500">⭐9.2</p>
+            </div>
+          </div>
+          <div class="col-span-full text-center mt-6">
+            <a href="src/Category Movies Page/hollywood.html" target="_blank">
+              <button
+                class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full transition"
+              >
+                See more
+              </button>
+            </a>
+          </div>
+        </div>
+
+        <div
+          id="kollywood"
+          class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Tamil/vikram.jpeg"
+              alt="vikram"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Vikram (2022)</h3>
+              <p class="text-yellow-500">⭐ 8.3</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Tamil/coolie.jpg"
+              alt="coolie"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Coolie (2025)</h3>
+              <p class="text-yellow-500">⭐ 6.1</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Tamil/Meiyazhagan.jpg"
+              alt="Meiyazhagan"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Meiyazhagan (2024)</h3>
+              <p class="text-yellow-500">⭐ 8.4</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Tamil/Maharaja.jpg"
+              alt="Maharaja"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Maharaja (2024)</h3>
+              <p class="text-yellow-500">⭐ 8.3</p>
+            </div>
+          </div>
+
+          <div class="col-span-full text-center mt-6">
+            <a href="src/Category Movies Page/tamil.html" target="_blank">
+              <button
+                class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full transition"
+              >
+                See more
+              </button>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tollywood -->
+        <div
+          id="tollywood"
+          class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Telugu/baahubali.jpg"
+              alt="KGF"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Baahubali: The Epic (2025)</h3>
+              <p class="text-yellow-500">⭐ 8.9</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="movie web/Telugu/lb.jpg"
+              alt="KGF"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Lucky Bhaskar (2024)</h3>
+              <p class="text-yellow-500">⭐ 9.5</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="movie web/Telugu/pushpa.jpg"
+              alt="KGF"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Pushpa (2024)</h3>
+              <p class="text-yellow-500">⭐ 8.1</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="movie web/Telugu/saaho.jpg"
+              alt="KGF"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Saaho (2019)</h3>
+              <p class="text-yellow-500">⭐ 7.5</p>
+            </div>
+          </div>
+          <div class="col-span-full text-center mt-6">
+            <a href="src/Category Movies Page/telugu.html" target="_blank">
+              <button
+                class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full transition"
+              >
+                See more
+              </button>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mollywood -->
+        <div
+          id="mollywood"
+          class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Malayalam/marco.jpg"
+              alt="marco"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Marco (2024)</h3>
+              <p class="text-yellow-500">⭐ 8.1</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="movie web/Malayalam/mb.jpg"
+              alt="manjummel boys "
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Manjummel Boys (2024)</h3>
+              <p class="text-yellow-500">⭐ 9.1</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="movie web/Malayalam/premalu.jpg"
+              alt="Premalu "
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Premalu (2024)</h3>
+              <p class="text-yellow-500">⭐ 9.1</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="/images/drishyam2.jpg"
+              alt="Drishyam 2"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Drishyam 2 (2022)</h3>
+              <p class="text-yellow-500">⭐ 8.8</p>
+            </div>
+          </div>
+          <div class="col-span-full text-center mt-6">
+            <a href="src/Category Movies Page/malayam.html" target="_blank">
+              <button
+                class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full transition"
+              >
+                See more
+              </button>
+            </a>
+          </div>
+        </div>
+
+        <div
+          id="dollywood"
+          class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Gujarati/fpm.jpeg"
+              alt="Fakt Purusho Maate"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Fakt Purusho Maate (2024)</h3>
+              <p class="text-yellow-500">⭐ 7</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="movie web/Gujarati/cjl.jpeg"
+              alt="Chaal Jeevi Laiye "
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Chaal Jeevi Laiye (2019)</h3>
+              <p class="text-yellow-500">⭐ 9.1</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="movie web/Gujarati/haha.jpeg"
+              alt="hahacar "
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Haha car (2024)</h3>
+              <p class="text-yellow-500">⭐ 6.8</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition"
+          >
+            <img
+              src="movie web/Gujarati/hat.jpg"
+              alt="Hu and tu"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Hu ane Tu (2023)</h3>
+              <p class="text-yellow-500">⭐ 7.8</p>
+            </div>
+          </div>
+          <div class="col-span-full text-center mt-6">
+            <a href="src/Category Movies Page/gujarati.html" target="_blank">
+              <button
+                class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full transition"
+              >
+                See more
+              </button>
+            </a>
+          </div>
+        </div>
+        <!-- Kollywood 
+        <div
+          id="kollywood"
+          class="tab-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Tamil/vikram.jpeg"
+              alt="vikram"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Vikram (2022)</h3>
+              <p class="text-yellow-500">⭐ 8.3</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Tamil/coolie.jpg"
+              alt="coolie"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Coolie (2025)</h3>
+              <p class="text-yellow-500">⭐ 6.1</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Tamil/Meiyazhagan.jpg"
+              alt="Meiyazhagan"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Meiyazhagan (2024)</h3>
+              <p class="text-yellow-500">⭐ 8.4</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Tamil/Maharaja.jpg"
+              alt="Maharaja"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Maharaja (2024)</h3>
+              <p class="text-yellow-500">⭐ 8.3</p>
+            </div>
+          </div>
+
+          <div class="col-span-full text-center mt-6">
+            <a href="src/Category Movies Page/tamil.html" target="_blank">
+              <button
+                class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full transition"
+              >
+                See more
+              </button>
+            </a>
+          </div>
+        </div>
+      -->
+      <div
+      id="sandalwood"
+      class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    >
+      <div
+        class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+      >
+            <img
+              src="movie web/Kannada/kgf2.jpg"
+              alt="kgf2"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">KGF Chapter 2 (2022)</h3>
+              <p class="text-yellow-500">⭐ 8.2</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Kannada/k.jpg"
+              alt="kantara"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Kantara (2022)</h3>
+              <p class="text-yellow-500">⭐ 8.3</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Kannada/sse.jpg"
+              alt="Sapta Sagaradaache Ello"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">Sapta Sagaradaache Ello (2023)</h3>
+              <p class="text-yellow-500">⭐ 7.4</p>
+            </div>
+          </div>
+
+          <div
+            class="movie-card bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition flex flex-col"
+          >
+            <img
+              src="movie web/Kannada/777c.jpg"
+              alt="777charlie"
+              class="w-full h-96 object-cover object-top"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-lg">777 Charlie (2022)</h3>
+              <p class="text-yellow-500">⭐ 8.4</p>
+            </div>
+          </div>
+
+          <div class="col-span-full text-center mt-6">
+            <a href="src/Category Movies Page/kannanda.html" target="_blank">
+              <button
+                class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full transition"
+              >
+                See more
+              </button>
+            </a>
+          </div>
+        </div>
+    
+
+    </section>
+
+    <!-- Trending Section -->
+    <section id="trending" class="py-16 px-4 relative">
+      <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center relative">
+        Trending <span class="text-yellow-500">Movies</span>
+      </h2>
+
+      <!-- Animated object (rocket example) -->
+      <img
+        id="flyer"
+        src="./images/rocket.png"
+        class="w-16 h-16 absolute -left-20 top-10 opacity-0"
+        alt="rocket"
+      />
+
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+        id="trending-grid"
+      >
+        <!-- JS renders movies -->
+      </div>
+    </section>
+    <!-- JS -->
+
+    <script>
+      document
+        .getElementById("see-more-bollywood")
+        .addEventListener("click", function () {
+          const hiddenMovies = document.querySelectorAll(".extra-bollywood");
+          hiddenMovies.forEach((movie) => movie.classList.remove("hidden"));
+          this.style.display = "none"; // Hide button after showing
+        });
+      document.querySelectorAll(".see-more-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const targetId = this.getAttribute("data-target");
+          const extra = document.getElementById(targetId);
+
+          if (extra.classList.contains("hidden")) {
+            extra.classList.remove("hidden");
+            this.textContent = "See Less";
+          } else {
+            extra.classList.add("hidden");
+            this.textContent = "See More";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trending Movies</title>
+    <style>
+      body {
+        background-color: #000;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      section {
+        padding: 50px 20px;
+        max-width: 1100px;
+        margin: auto;
+      }
+
+      h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 40px;
+      }
+
+      h2 span {
+        color: #dc2626;
+      }
+
+      /* Grid for movies */
+      .movie-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      /* Movie card */
+      .movie-card {
+        background-color: #222;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .movie-card:hover {
+        transform: scale(1.03);
+      }
+
+      .movie-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .movie-card .details {
+        padding: 15px;
+      }
+
+      .movie-card .details h3 {
+        margin: 0 0 5px 0;
+        font-size: 1.1rem;
+      }
+
+      .movie-card .details p {
+        margin: 0;
+        color: #aaa;
+        font-size: 0.9rem;
+      }
+
+      /* Star rating */
+      .stars {
+        display: flex;
+        gap: 2px;
+        margin-top: 5px;
+      }
+
+      .star {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        background-color: #444;
+        clip-path: polygon(
+          50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%
+        );
+      }
+
+      .star.filled {
+        background-color: #facc15; /* yellow */
+      }
+
+      @media (max-width: 600px) {
+        .movie-card img {
+          height: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h2>Trending <span>Movies</span></h2>
+
+      <div class="movie-grid" id="trending-grid">
+        <!-- Movies will be added here via JS -->
+      </div>
+    </section>
+
+    <script>
+      const trendingMovies = [
+        {
+          title: "Avatar: The Way of Water",
+          year: 2022,
+          rating: 7.8,
+          poster: "./images/avatar.jpg",
+        },
+        {
+          title: "Top Gun: Maverick",
+          year: 2022,
+          rating: 8.3,
+          poster: "./images/topgun.jpg",
+        },
+        {
+          title: "Black Panther: Wakanda Forever",
+          year: 2022,
+          rating: 6.7,
+          poster: "./images/bp.jpg",
+        },
+        {
+          title: "The Batman",
+          year: 2022,
+          rating: 7.8,
+          poster: "./images/batman.jpg",
+        },
+        { title: "Dune", year: 2021, rating: 8.0, poster: "./images/dune.jpg" },
+        {
+          title: "Spider-Man: No Way Home",
+          year: 2021,
+          rating: 8.3,
+          poster: "./images/spiderman.jpg",
+        },
+      ];
+
+      function renderStars(rating) {
+        const stars = [];
+        const fullStars = Math.round(rating / 2);
+        for (let i = 0; i < 5; i++) {
+          if (i < fullStars) {
+            stars.push('<span class="star filled"></span>');
+          } else {
+            stars.push('<span class="star"></span>');
+          }
+        }
+        return stars.join("");
+      }
+
+      function renderTrendingMovies() {
+        const grid = document.getElementById("trending-grid");
+        trendingMovies.forEach((movie) => {
+          const card = document.createElement("div");
+          card.className = "movie-card";
+          card.innerHTML = `
+        <img src="${movie.poster}" alt="${movie.title}">
+        <div class="details">
+          <h3>${movie.title}</h3>
+          <p>${movie.year}</p>
+          <div class="stars">
+            ${renderStars(movie.rating)}
+          </div>
+        </div>
+      `;
+          grid.appendChild(card);
+        });
+      }
+
+      renderTrendingMovies();
+    </script>
+  </body>
+</html>

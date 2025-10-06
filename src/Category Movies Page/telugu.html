@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Telugu Movies</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Line clamp for movie titles */
+      .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-white">
+    <div class="pt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Title -->
+      <h1 class="text-4xl font-bold text-yellow-400 mb-6">Telugu Movies</h1>
+
+      <!-- Search bar -->
+      <div class="mb-8 relative w-full max-w-md">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search movies..."
+          class="w-full bg-gray-800/50 backdrop-blur-sm text-white placeholder-gray-400 pl-4 pr-4 py-2 rounded-full border border-gray-700 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/20 transition-all duration-300"
+        />
+      </div>
+
+      <!-- Movie grid -->
+      <div
+        id="movieSections"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      ></div>
+    </div>
+
+    <script>
+      const movies = [
+        {
+          id: "1",
+          title: "Saaho",
+          rating: 5.2,
+          year: 2019,
+          genre: "Action / Thriller",
+          imageUrl: "/movie web/Telugu/saaho.jpg",
+        },
+        {
+          id: "2",
+          title: "Mark Antony",
+          rating: 7.0,
+          year: 2023,
+          genre: "Action / Sci-Fi / Comedy",
+          imageUrl: "/movie web/Telugu/ma.jpg",
+        },
+        {
+          id: "3",
+          title: "Game Changer",
+          rating: 8.1,
+          year: 2025,
+          genre: "Action / Drama / Political",
+          imageUrl: "/movie web/Telugu/gc.jpg",
+        },
+        {
+          id: "4",
+          title: "V",
+          rating: 6.9,
+          year: 2020,
+          genre: "Action / Thriller",
+          imageUrl: "/movie web/Telugu/v.jpg",
+        },
+        {
+          id: "5",
+          title: "Saripodhaa Sanivaaram",
+          rating: 8.0,
+          year: 2024,
+          genre: "Action / Drama",
+          imageUrl: "/movie web/Telugu/ss.jpg",
+        },
+        {
+          id: "6",
+          title: "Jersey",
+          rating: 8.5,
+          year: 2019,
+          genre: "Sports / Drama",
+          imageUrl: "/movie web/Telugu/jersey.jpg",
+        },
+        {
+          id: "7",
+          title: "Lucky Baskhar",
+          rating: 8.2,
+          year: 2024,
+          genre: "Crime / Drama / Thriller",
+          imageUrl: "/movie web/Telugu/lb.jpg",
+        },
+        {
+          id: "8",
+          title: "Ala Vaikunthapurramuloo",
+          rating: 7.3,
+          year: 2020,
+          genre: "Action / Drama / Family",
+          imageUrl: "/movie web/Telugu/av.jpg",
+        },
+        {
+          id: "9",
+          title: "Baahubali: The Beginning",
+          rating: 8.0,
+          year: 2015,
+          genre: "Action / Adventure / Fantasy",
+          imageUrl: "/movie web/Telugu/b1.jpg",
+        },
+        {
+          id: "10",
+          title: "Baahubali 2: The Conclusion",
+          rating: 8.2,
+          year: 2017,
+          genre: "Action / Drama / Fantasy",
+          imageUrl: "/movie web/Telugu/b2.jpg",
+        },
+        {
+          id: "11",
+          title: "Pushpa: The Rise",
+          rating: 7.6,
+          year: 2021,
+          genre: "Action / Crime / Drama",
+          imageUrl: "/movie web/Telugu/pushpa1.jpg",
+        },
+        {
+          id: "12",
+          title: "Pushpa 2: The Rule",
+          rating: 8.5,
+          year: 2025,
+          genre: "Action / Thriller / Crime",
+          imageUrl: "/movie web/Telugu/pushpa.jpg",
+        },
+        {
+          id: "13",
+          title: "Rangasthalam",
+          rating: 8.4,
+          year: 2018,
+          genre: "Action / Drama",
+          imageUrl: "/movie web/Telugu/Rangasthalam.jpg",
+        },
+        {
+          id: "14",
+          title: "Arjun Reddy",
+          rating: 8.5,
+          year: 2017,
+          genre: "Romance / Drama",
+          imageUrl: "/movie web/Telugu/Arjun Reddy.jpg",
+        },
+        {
+          id: "15",
+          title: "Mahanati",
+          rating: 8.5,
+          year: 2018,
+          genre: "Biography / Drama",
+          imageUrl: "/movie web/Telugu/Mahanati.jpg",
+        },
+
+        {
+          id: "18",
+          title: "RRR",
+          rating: 8.0,
+          year: 2022,
+          genre: "Action / Drama / History",
+          imageUrl: "/movie web/Telugu/RRR.jpeg",
+        },
+        {
+          id: "19",
+          title: "Magadheera",
+          rating: 7.7,
+          year: 2009,
+          genre: "Action / Fantasy / Romance",
+          imageUrl: "/movie web/Telugu/Magadheera.jpg",
+        },
+        {
+          id: "20",
+          title: "Sye Raa Narasimha Reddy",
+          rating: 7.2,
+          year: 2019,
+          genre: "Action / Biography / History",
+          imageUrl: "/movie web/Telugu/Sye Raa Narasimha Reddy.jpeg",
+        },
+        {
+          id: "21",
+          title: "Baahubali: The Epic",
+          rating: 8.6,
+          year: 2025,
+          genre: "Action / Drama ",
+          imageUrl: "/movie web/Telugu/baahubali.jpg",
+        },
+        {
+          id: "22",
+          title: "Akhanda",
+          rating: 6.8,
+          year: 2021,
+          genre: "Action / Drama / Fantasy",
+          imageUrl: "/movie web/Telugu/akhanda.jpg",
+        },
+        {
+          id: "23",
+          title: "Uppena",
+          rating: 6.8,
+          year: 2021,
+          genre: "Romance / Drama",
+          imageUrl: "/movie web/Telugu/uppena.AVIF",
+        },
+        {
+          id: "24",
+          title: "Hi Nanna",
+          rating: 8.1,
+          year: 2023,
+          genre: "Drama / Romance",
+          imageUrl: "/movie web/Telugu/hinanna.jpeg",
+        },
+        {
+          id: "25",
+          title: "Devara: Part 1",
+          rating: 8.3,
+          year: 2024,
+          genre: "Action / Drama / Thriller",
+          imageUrl: "/movie web/Telugu/devera1.jpeg",
+        },
+
+        {
+          id: "26",
+          title: "Hanu-man",
+          rating: 7.7,
+          year: 2024,
+          genre: "Action / Drama / Thriller",
+          imageUrl: "/movie web/Telugu/hanuman.jpeg",
+        },
+
+        {
+          id: "27",
+          title: "Guntur Kaaram",
+
+          rating: 5.3,
+          year: 2024,
+          genre: "Action / Drama ",
+          imageUrl: "/movie web/Telugu/gk.jpeg",
+        },
+      ];
+
+      function createMovieCard(movie) {
+        return `
+          <div class="group bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-400/20">
+            <img src="${movie.imageUrl}" alt="${
+          movie.title
+        }" class="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="p-4">
+              <h5 class="text-white font-bold text-lg mb-2 line-clamp-1">${
+                movie.title
+              }</h5>
+              <p class="text-gray-400 text-sm mb-1">${movie.year}</p>
+              <p class="text-yellow-400 font-semibold">⭐ ${movie.rating.toFixed(
+                1
+              )}</p>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderMovieSections() {
+        const container = document.getElementById("movieSections");
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+
+        const filteredMovies = movies.filter((m) =>
+          m.title.toLowerCase().includes(query)
+        );
+
+        container.innerHTML = filteredMovies.map(createMovieCard).join("");
+      }
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", renderMovieSections);
+
+      // Initial render
+      renderMovieSections();
+    </script>
+  </body>
+</html>
