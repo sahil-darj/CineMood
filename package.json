@@ -11,13 +11,23 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "**CineMood** is a personalized movie discovery and review web app that helps users **discover, rate, and review movies** based on their **mood, genre, and language** preferences.  \r It’s a modern, interactive platform for cinema lovers to explore trending films, underrated gems, and all-time classics across multiple languages.",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.18.3"
-  }
+    "mongoose": "^8.19.0",
+    "multer": "^2.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahil-darj/CineMood.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sahil-darj/CineMood/issues"
+  },
+  "homepage": "https://github.com/sahil-darj/CineMood#readme"
 }
